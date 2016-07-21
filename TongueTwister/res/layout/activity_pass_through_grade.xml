@@ -1,0 +1,79 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/bg_pt_item"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:id="@+id/rv_show_result"
+        android:layout_width="fill_parent"
+        android:layout_height="250dip"
+        android:background="@drawable/icon_show_result" >
+
+        <ImageView
+            android:id="@+id/iv_show_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/scary" />
+
+        <TextView
+            android:id="@+id/tv_show_result"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_show_result"
+            android:layout_centerInParent="true"
+            android:text="恭喜你"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="250dip"
+        android:layout_height="1dp"
+        android:layout_alignBottom="@+id/rv_show_result"
+        android:background="#EBEBEB" />
+
+    <RelativeLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="200dip"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view1"
+        android:layout_centerHorizontal="true"        
+        android:layout_margin="20dp" >
+
+        <Button
+            android:id="@+id/iv_repeat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"          
+            android:text="重新闯关"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_pt_btn" />
+
+        <Button
+            android:id="@+id/iv_next"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/btn_record"
+            android:text="继续前进"
+            android:textSize="20sp"
+            android:layout_marginTop="15dip"
+            android:textColor="@color/white"
+            android:background="@drawable/selector_pt_btn" />
+
+        <Button
+            android:id="@+id/btn_record"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/selector_pt_btn"
+             android:layout_below="@+id/iv_repeat"          
+            android:layout_marginTop="15dip"
+            android:text="闯关录音"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

@@ -1,0 +1,94 @@
+package team.abc.tonguetwister.constant;
+import android.app.Activity;
+import android.util.DisplayMetrics;
+
+
+public class Constant {
+	// Recognise
+	public static final String RECOGNISE_DIR_NAME ="/TongueTwister/Recognise";
+	public static final String EXTRA_KEY = "key";
+	public static final String EXTRA_SECRET = "secret";
+	public static final String EXTRA_SAMPLE = "sample";
+	public static final String EXTRA_SOUND_START = "sound_start";
+	public static final String EXTRA_SOUND_END = "sound_end";
+	public static final String EXTRA_SOUND_SUCCESS = "sound_success";
+	public static final String EXTRA_SOUND_ERROR = "sound_error";
+	public static final String EXTRA_SOUND_CANCEL = "sound_cancel";
+	public static final String EXTRA_INFILE = "infile";
+	public static final String EXTRA_OUTFILE = "outfile";
+
+	public static final String EXTRA_LANGUAGE = "language";
+	public static final String EXTRA_NLU = "nlu";
+	public static final String EXTRA_VAD = "vad";
+	public static final String EXTRA_PROP = "prop";
+
+	public static final String EXTRA_OFFLINE_ASR_BASE_FILE_PATH = "asr-base-file-path";
+	public static final String EXTRA_OFFLINE_LM_RES_FILE_PATH = "lm-res-file-path";
+	
+
+	public static final int SAMPLE_8K = 8000;
+	public static final int SAMPLE_16K = 16000;
+
+	public static final String VAD_SEARCH = "search";
+	public static final String VAD_INPUT = "input";
+
+	// TTS
+	public static final String TTS_DIR_NAME = "/TongueTwister/TTS";
+	
+	public static final String SPEECH_FEMALE_MODEL_NAME = "bd_etts_speech_female.dat";
+	public static final String SPEECH_MALE_MODEL_NAME = "bd_etts_speech_male.dat";
+	public static final String LICENSE_FILE_NAME = "temp_license";
+	public static final String TEXT_MODEL_NAME = "bd_etts_text.dat";
+
+	// apikey,secretkey,AppiD
+	public static final String AppID = "8155626";
+
+	public static final String ApiKey = "G6yuH2e5mGqYb1pN6fUNiXXa";
+
+	public static final String SecretKey = "987c87b2629763223ea4ff4bafc166fd";
+
+	// 闯关界面
+	public static int screenHeight = 0;
+	public static int screenWidth = 0;
+	public static float screenDensity = 0;
+	public static final String FILE_NAME = "goldInfo";// 金币存储的文件名
+	public static final int goldNum = 100;// 金币数目
+
+	public static int curentPage = 0;
+	public static int countPages = 0;
+	public static String[] titles = { "初入江湖", "小有名气", "名动一方", "天下闻名", "一代宗师", "超凡入圣", "天外飞仙" };
+
+	public static void init(Activity context) {
+		if (screenDensity == 0 || screenWidth == 0 || screenHeight == 0) {
+			DisplayMetrics dm = new DisplayMetrics();
+			context.getWindowManager().getDefaultDisplay().getMetrics(dm);
+			Constant.screenDensity = dm.density;
+			Constant.screenHeight = dm.heightPixels;
+			Constant.screenWidth = dm.widthPixels;
+		}
+		curentPage = 0;
+		countPages = 0;
+	}
+	//手势动作
+	public static final int GESTURE_UP = 0;
+	public static final int GESTURE_DOWN = 1;
+	public static final int GESTURE_LEFT = 2;
+	public static final int GESTURE_RIGHT = 3;
+	//版本更新
+	public static final String APK_DOWNLOAD_URL = "url";
+	public static final String APK_UPDATE_CONTENT = "updateMessage";
+	public static final String APK_VERSION_CODE = "versionCode";
+
+
+	public static final int TYPE_DIALOG = 1;
+
+	public static final String TAG = "UpdateChecker";
+
+	public static final String UPDATE_URL = "http://182.61.51.97:8080/Download/update.json";
+    //网络状况
+	public static final String NO_NETWORK = "未连接网络";
+	public static final String DISABLE_NETWORK = "网络不可用";
+	public static final String PREPARE_SUCCESS = "success";
+	//app下载网址
+	public static final String SHARE_URL = "http://182.61.51.97:8080/Download/TongueTwister.apk";
+}

@@ -1,0 +1,29 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dip"
+        android:singleLine="false"
+        android:text="初次闯关前，平台会奖励每位玩家100金币。
+
+闯关说明：
+每个关卡需点亮三颗星星，才能闯关成功。
+
+金币的累加：
+点亮三颗星星，奖励1个金币；点亮四颗星星，奖励3个金币；点亮五颗星星，奖励5个金币
+
+金币的用途：
+如果玩家卡在某一个关卡，想要继续闯关，可以使用金币去点亮星星，使用5个金币直接进行下一关的挑战。" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dip"
+        android:text="返回" />
+
+</LinearLayout>

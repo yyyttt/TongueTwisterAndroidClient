@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_study_mode_choose" >
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_all_modes"
+        android:layout_width="270dip"
+        android:layout_height="300dip"
+        android:layout_gravity="center"
+        android:layoutAnimation="@anim/anim_layout"
+        android:padding="10dip" >
+
+        <RelativeLayout
+            android:id="@+id/rl_tabularform"
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="10dip"
+            android:background="@drawable/selector_rl_tabularform"
+            android:clickable="true" >
+
+            <ImageView
+                style="@style/image_study_choose"
+                android:background="@drawable/image_btabularform" />
+
+            <TextView
+                style="@style/text_study_choose"
+                android:text="列表模式" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_Random"
+            android:layout_width="120dip"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/rl_tabularform"
+            android:background="@drawable/selector_rl_random"
+            android:clickable="true" >
+
+            <ImageView
+                style="@style/image_study_choose"
+                android:background="@drawable/image_random" />
+
+            <TextView
+                style="@style/text_study_choose"
+                android:text="顺便逛逛" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_Collections"
+            android:layout_width="120dp"
+            android:layout_height="100dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/rl_tabularform"
+            android:background="@drawable/selector_rl_collections"
+            android:clickable="true" >
+
+            <ImageView
+                style="@style/image_study_choose"
+                android:background="@drawable/image_collections" />
+
+            <TextView
+                style="@style/text_study_choose"
+                android:text="收藏夹" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

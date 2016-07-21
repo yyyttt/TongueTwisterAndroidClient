@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="RangeSliderView">
+        <attr name="rangeCount" format="integer" />
+        <attr name="filledColor" format="color" />
+        <attr name="emptyColor" format="color" />
+        <attr name="barHeightPercent" format="float" />
+        <attr name="slotRadiusPercent" format="float" />
+        <attr name="sliderRadiusPercent" format="float" />
+    </declare-styleable>
+    
+    <declare-styleable name="SegmentControlView">
+        <attr name="cornerRadius" format="dimension|reference"/>
+        <attr name="colors" format="color|reference"/>
+        <attr name="textSelectedColors" format="color|reference"/>
+        <attr name="texts" format="string|reference"/>
+        <attr name="android:textSize"/>
+        <attr name="direction" format="enum">
+            <enum name="horizon" value="0"/>
+            <enum name="vertical" value="1"/>
+        </attr>
+        <!-- 外部边框的width -->
+        <attr name="boundWidth" format="dimension|reference"/>
+        <!-- 内部边框的width -->
+        <attr name="separatorWidth" format="dimension|reference"/>
+        <attr name="gaps" format="dimension|reference"/>
+        <attr name="horizonGap" format="dimension|reference"/>
+        <attr name="verticalGap" format="dimension|reference"/>
+    </declare-styleable>
+    
+    <declare-styleable name="CircleButton">
+        <attr name="cb_color" format="color" />
+        <attr name="cb_pressedRingWidth" format="dimension" />
+    </declare-styleable>
+
+</resources>

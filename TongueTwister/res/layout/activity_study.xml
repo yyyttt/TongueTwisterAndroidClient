@@ -1,0 +1,177 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rsv="http://schemas.android.com/apk/res-auto"
+    xmlns:sc="http://schemas.android.com/apk/res-auto"
+    xmlns:cb="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_study" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dip"
+            android:layout_marginBottom="15dip"
+            android:layout_gravity="center"
+            android:text="title"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/white" />
+        
+        <TextView
+            android:id="@+id/word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="南南有个篮篮，篮篮装着盘盘，盘盘放着碗碗，碗碗盛着饭饭。南南翻了篮篮，篮篮扣了盘盘，盘盘打了碗碗，碗碗撒了饭饭."
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@color/trans_white1"/>
+
+        <ProgressBar
+            android:id="@+id/proBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_change_tt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" >
+
+        <ImageView
+            android:id="@+id/iv_former_tt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/selector_arrow_left" />
+
+        <ImageView
+            android:id="@+id/iv_next_tt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/selector_arrow_right" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rl_change_tt"
+        android:layout_marginLeft="5dp"
+        android:orientation="vertical" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="语速："
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/deepyellow1" />
+
+            <team.abc.tonguetwister.widget.RangeSliderView
+                android:id="@+id/rsv_speek_speed"
+                android:layout_width="200dp"
+                android:layout_height="50dp"
+                android:layout_marginRight="10dp"
+                rsv:emptyColor="#a8aeb8"
+                rsv:filledColor="#ffb20a"
+                rsv:rangeCount="5" />
+
+            <TextView
+                android:id="@+id/tv_speek_speed_index"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="3X"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/deepyellow1" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="发声："
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textColor="@color/deepyellow1" />
+
+            <team.abc.tonguetwister.widget.SegmentControlView
+                android:id="@+id/sc_gender"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:textSize="16sp"
+                sc:colors="@color/deepyellow1"
+                sc:cornerRadius="5dip"
+                sc:direction="horizon"
+                sc:horizonGap="8dip"
+                sc:texts="男|女"
+                sc:verticalGap="8dip" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="5dip"
+        android:orientation="horizontal" >
+
+        <team.abc.tonguetwister.widget.CircleButton
+            android:id="@+id/cbtn_start"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/icon_begin"
+            cb:cb_pressedRingWidth="5dp"
+            cb:cb_color= "@color/skyblue1" 
+            android:layout_centerHorizontal="true"/>
+        
+        <team.abc.tonguetwister.widget.CircleButton
+            android:id="@+id/cbtn_stop"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginRight="20dp"
+            android:src="@drawable/icon_stop"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            cb:cb_pressedRingWidth="5dp"
+            cb:cb_color= "@color/skyblue1" />
+        
+        <team.abc.tonguetwister.widget.CircleButton
+            android:id="@+id/cbtn_collection"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="20dp"
+            android:src="@drawable/icon_collection_not"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            cb:cb_pressedRingWidth="5dp"
+            cb:cb_color= "@color/skyblue1" />
+       
+    </RelativeLayout>
+
+</RelativeLayout>
