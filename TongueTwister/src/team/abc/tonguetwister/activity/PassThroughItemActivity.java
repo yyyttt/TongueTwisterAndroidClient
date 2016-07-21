@@ -165,7 +165,7 @@ public class PassThroughItemActivity extends Activity implements
 		// 合代码改动
 		// tongueTwister = new
 		// TTOperation(MyApplication.getMyAppContext()).getAppointedOneTT(numberPass);
-		tongueTwister = new TTOperation().getAppointedOneTT(numberPass);
+		tongueTwister = TTOperation.getAppointedOneTT(numberPass);
 		wordContent = tongueTwister.getContent();
 		wordNumber = WordCountUtil.wordCount(wordContent);
 		wordConvertToPinyin = HanZiToPinYinUtil

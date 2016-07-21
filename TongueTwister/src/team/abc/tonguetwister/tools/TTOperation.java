@@ -77,11 +77,6 @@ public class TTOperation {
 			}
 		}
 
-		/*
-		 * for(int i = 0 ; i < tTList.size(); i++){ if(i % 4 == 0){
-		 * list.add(tTList.get(i)); } }
-		 */
-
 		Log.i(TAG, list.toString());
 
 		return list;
@@ -89,7 +84,7 @@ public class TTOperation {
 	}
 
 	// 返回指定的一个绕口令
-	public TongueTwister getAppointedOneTT(int num) {
+	public static TongueTwister getAppointedOneTT(int num) {
 		System.out.println("tTList.size():" + tTList.size());
 		if (num > tTList.size()) {
 			return null;
@@ -128,19 +123,6 @@ public class TTOperation {
 		return TongueTwisterDetailsDb.getDbInstance(
 				MyApplication.getMyAppContext()).getSingleCollectState(
 				tt.getId());
-		// return tt.getCollectionStatus();
-	}
-
-	public static void main(String[] args) {
-
-		// TTOperation tto = new TTOperation();
-
-		// System.out.println(tto.getRandom());
-		//
-		// System.out.println(tto.getSomTT(10));
-		//
-		// System.out.println(tto.getSomeRandom(3));
-		// System.out.println(getAppointedOneTT(1).getContent());
 	}
 
 }
