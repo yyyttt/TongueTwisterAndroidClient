@@ -80,7 +80,7 @@ public class MainActivity extends Activity {
 	public void onBackPressed() {
 
 		final MaterialDialog dialog = new MaterialDialog(this);
-		dialog.content("确定要推出吗？").btnText("取消", "确定")
+		dialog.content("确定要退出吗？").btnText("取消", "确定")
 				.showAnim(new BounceTopEnter())
 				.dismissAnim(new SlideBottomExit())
 				.show();
