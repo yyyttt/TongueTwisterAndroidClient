@@ -106,15 +106,7 @@ public class StudyActivity extends Activity implements OnClickListener {
 		Log.i(TAG, "onCreate");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_study);
-		/*
-		 * String randomMode = getIntent().getStringExtra(
-		 * StudyMode.class.getName());
-		 * 
-		 * if(StudyMode.mode == StudyMode.MODE_COLLECTION){ tonguetwisterList =
-		 * TTOperation.getCollectionTT(); }else{ tonguetwisterList =
-		 * TTOperation.getAllTT(); }
-		 */
-
+		
 		switch (StudyMode.mode) {
 		case StudyMode.MODE_LIST:
 			tonguetwisterList = TTOperation.getAllTT();
