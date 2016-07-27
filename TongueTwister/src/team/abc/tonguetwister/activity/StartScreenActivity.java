@@ -39,14 +39,6 @@ public class StartScreenActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
-		//去掉title_bar
-		requestWindowFeature(Window.FEATURE_NO_TITLE);
-		//全屏显示
-		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
-				WindowManager.LayoutParams.FLAG_FULLSCREEN);						                                                                   
-
-		
 		setContentView(R.layout.activity_start_screen_layout);
 		initialView();
 	}
@@ -92,9 +84,10 @@ public class StartScreenActivity extends Activity {
 			if (!TTSInit.initialOnlineModeTts()) {
 				return DISABLE_NETWORK;
 			}
-			
-			//数据库初始化(写得有问题  需再测 20160711_zsc)
-			TongueTwisterDetailsDb tongueTwisterDetailsDb = TongueTwisterDetailsDb.getDbInstance(StartScreenActivity.this);
+
+			// 数据库初始化(写得有问题 需再测 20160711_zsc)
+			TongueTwisterDetailsDb tongueTwisterDetailsDb = TongueTwisterDetailsDb
+					.getDbInstance(StartScreenActivity.this);
 			if (tongueTwisterDetailsDb.Db_getMorePassThrough().size() == 0) {
 				tongueTwisterDetailsDb.passThroughAddMore();
 			}
