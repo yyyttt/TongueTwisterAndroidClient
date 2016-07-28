@@ -11,7 +11,6 @@ import team.abc.tonguetwister.constant.Constant;
 import team.abc.tonguetwister.tools.AppUtil;
 import team.abc.tonguetwister.tools.HttpUtils;
 import team.abc.tonguetwister.widget.ShowMaterialDialog;
-import team.abc.tonguetwister.widget.UpdateDialog;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,7 +27,7 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
     private int mType;
     private boolean mShowProgressDialog;
     private static final String url = Constant.UPDATE_URL;
-
+   
     CheckUpdateTask(Context context, int type, boolean showProgressDialog) {
 
         this.mContext = context;
@@ -56,6 +55,8 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
 
         if (!TextUtils.isEmpty(result)) {
             parseJson(result);
+        }else{        	
+        	Toast.makeText(mContext, "连接服务器失败，请检查网络。", Toast.LENGTH_SHORT).show();
         }
     }
 
