@@ -27,6 +27,7 @@ import team.abc.tonguetwister.R;
 import team.abc.tonguetwister.application.MyApplication;
 import team.abc.tonguetwister.bean.TongueTwister;
 import team.abc.tonguetwister.constant.Constant;
+import team.abc.tonguetwister.constant.PathConstant;
 import team.abc.tonguetwister.dao.TongueTwisterDetailsDb;
 import team.abc.tonguetwister.tools.HanZiToPinYinUtil;
 import team.abc.tonguetwister.tools.NetWorkUtil;
@@ -41,6 +42,7 @@ import team.abc.tonguetwister.widget.CircleButton;
 import team.abc.tonguetwister.widget.CustomProgressDialog;
 import team.abc.tonguetwister.widget.ShowMaterialDialog;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -279,10 +281,11 @@ public class PassThroughItemActivity extends Activity implements
 					begin_time = dfs.format(new Date());
 					speechTips.setVisibility(View.VISIBLE);
 					// speechRecognizer.cancel();
+					
 					Intent intent = new Intent();
-					TTSRelatedUtil.bindParams(intent, number);
+					TTSRelatedUtil.bindParams(intent);
+					intent.putExtra(Constant.EXTRA_OUTFILE, filePath);//输出文件位置
 					intent.putExtra("vad", "touch");
-
 					speechRecognizer.startListening(intent);
 
 					break;
@@ -334,9 +337,7 @@ public class PassThroughItemActivity extends Activity implements
 	private void initPCMData(Integer numberPCM) {
 
 		// 获取音频数据
-		filePath = Environment.getExternalStorageDirectory().getAbsolutePath()
-				+ "/outfile" + numberPCM + ".pcm";
-
+		filePath = getPCMDataPath()+ "/outfile" + numberPCM + ".pcm";
 		byte[] data = PcmRelated.getPCMData(filePath);
 		mAudioPlayer.setDataSource(data);
 
@@ -347,6 +348,18 @@ public class PassThroughItemActivity extends Activity implements
 			System.out.println(filePath + "：该路径下不存在文件！");
 		}
 
+	}
+
+	private String getPCMDataPath() {
+
+		File file = new File(PathConstant.PCM_DATA_PATH);
+
+		// 创建文件夹及父文件夹。
+		if (!file.exists()) {
+			file.mkdirs();
+		}
+
+		return file.getAbsolutePath();
 	}
 
 	@Override
