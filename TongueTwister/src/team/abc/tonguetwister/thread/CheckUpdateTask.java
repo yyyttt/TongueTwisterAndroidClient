@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 import team.abc.tonguetwister.R;
 import team.abc.tonguetwister.constant.Constant;
+import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.tools.AppUtil;
 import team.abc.tonguetwister.tools.HttpUtils;
 import team.abc.tonguetwister.widget.ShowMaterialDialog;
@@ -26,7 +27,6 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
     private Context mContext;
     private int mType;
     private boolean mShowProgressDialog;
-    private static final String url = Constant.UPDATE_URL;
    
     CheckUpdateTask(Context context, int type, boolean showProgressDialog) {
 
@@ -92,6 +92,6 @@ class CheckUpdateTask extends AsyncTask<Void, Void, String> {
 
     @Override
     protected String doInBackground(Void... args) {
-        return HttpUtils.get(url);
+        return HttpUtils.get(URLConstant.UPDATE_URL);
     }
 }

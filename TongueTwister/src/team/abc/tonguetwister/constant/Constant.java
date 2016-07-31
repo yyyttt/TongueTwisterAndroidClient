@@ -83,12 +83,8 @@ public class Constant {
 	public static final int TYPE_DIALOG = 1;
 
 	public static final String TAG = "UpdateChecker";
-
-	public static final String UPDATE_URL = "http://182.61.51.97:8080/Download/update.json";
     //网络状况
 	public static final String NO_NETWORK = "未连接网络";
 	public static final String DISABLE_NETWORK = "网络不可用";
 	public static final String PREPARE_SUCCESS = "success";
-	//app下载网址
-	public static final String SHARE_URL = "http://182.61.51.97:8080/Download/TongueTwister.apk";
 }
