@@ -25,6 +25,7 @@ import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
+import android.widget.Toast;
 
 public class StudyTTChooseActivity extends Activity {
 	private ListView lvTongueTwisters;
@@ -58,6 +59,13 @@ public class StudyTTChooseActivity extends Activity {
 		if (isCollectionMode) {
 			list = TTOperation.getCollectionTT();
 			GroupTitleUtil.insertCollectionGroupTitle(list);
+			
+			//当无收藏时，结束此页面。
+			if(null == list||list.isEmpty()){
+				Toast.makeText(this, "暂无收藏", Toast.LENGTH_SHORT).show();
+				finish();
+			}
+			
 		} else {
 			list = TTOperation.getAllTT();
 			GroupTitleUtil.insertGroupTitle(list);

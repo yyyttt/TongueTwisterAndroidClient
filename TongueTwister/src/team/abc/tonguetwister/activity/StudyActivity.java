@@ -383,6 +383,8 @@ public class StudyActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		if (StudyMode.mode != StudyMode.MODE_RANDOM) {
 			finish();
+			overridePendingTransition(R.anim.push_right_in,
+					R.anim.push_right_out);
 			startActivity(new Intent(this, StudyTTChooseActivity.class));
 		} else {
 			super.onBackPressed();
