@@ -12,6 +12,7 @@ import team.abc.tonguetwister.activity.LoginChooseActivity;
 import team.abc.tonguetwister.activity.MainActivity;
 import team.abc.tonguetwister.application.MyApplication;
 import team.abc.tonguetwister.constant.Gender;
+import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.javascriptobject.UserLoginObject;
 import team.abc.tonguetwister.javascriptobject.UserLogoutObject;
 import team.abc.tonguetwister.thread.UpdateChecker;
@@ -51,9 +52,7 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 	private TextView tvUpdatingOnline;
 	private TextView tvShareOnline;
 	private LinearLayout lvLogin;
-	private static final String LOGOUT_URL = "http://182.61.51.97:8080/NSPClient/logout.html";
 	public ListView listview;
-	public static final String SHARE_URL = "http://182.61.51.97:8080/Download/TongueTwister.apk";
 
 	public SlidingMenuFragment() {
 
@@ -195,7 +194,7 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 
 		});
 
-		wvLogout.loadUrl(LOGOUT_URL);
+		wvLogout.loadUrl(URLConstant.LOGOUT_URL);
 		wvLogout.addJavascriptInterface(new UserLogoutObject(this),
 				"userLogoutObject");
 
@@ -245,7 +244,7 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 			startActivity(new Intent(getActivity(), LoginChooseActivity.class));
 			break;
 		case R.id.tv_share_online:
-			ShareUtil.shareTo(getActivity(), "挑战绕口令？尽在吧嗒绕口令-让你的舌头快快舞动起来~"+SHARE_URL);
+			ShareUtil.shareTo(getActivity(), "挑战绕口令？尽在吧嗒绕口令-让你的舌头快快舞动起来~"+URLConstant.SHARE_URL);
 			break;
 		case R.id.tv_logout:
 			userLogout();
