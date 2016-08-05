@@ -18,7 +18,7 @@ import team.abc.tonguetwister.service.DownloadService;
 
 public class ShowMaterialDialog {
 	//一个按钮
-	public static void showMaterialDialog(String msg,final Activity mactivity,Context mContext) {
+	public static void showMaterialDialog(String msg,final Context mContext) {
 		final MaterialDialog dialog = new MaterialDialog(
 				mContext);
 
@@ -31,6 +31,7 @@ public class ShowMaterialDialog {
 				@Override
 				public void onDismiss(DialogInterface dialog) {
 					dialog.cancel();
+					Activity mactivity = (Activity) mContext;
 					mactivity.startActivity(new Intent(mactivity, PassThroughActivity.class));
 					mactivity.overridePendingTransition(R.anim.push_right_in,
 							R.anim.push_right_out);

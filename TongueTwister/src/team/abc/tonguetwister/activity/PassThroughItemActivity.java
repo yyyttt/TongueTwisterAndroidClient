@@ -277,8 +277,7 @@ public class PassThroughItemActivity extends Activity implements
 					if (!NetWorkUtil.isNetworkAvailable(MyApplication
 							.getMyAppContext())) {
 						ShowMaterialDialog.showMaterialDialog(
-								Constant.NO_NETWORK,
-								PassThroughItemActivity.this,PassThroughItemActivity.this);
+								Constant.NO_NETWORK,PassThroughItemActivity.this);
 						break;
 					}
 					if (!SpeechRecognizer
@@ -451,12 +450,10 @@ public class PassThroughItemActivity extends Activity implements
         if (sb.toString().contains("音频问题")) {
         	speechRecognizer.destroy();
         	ShowMaterialDialog.showMaterialDialog(
-					Constant.RECORD_DENIED,
-					PassThroughItemActivity.this,PassThroughItemActivity.this);
+					Constant.RECORD_DENIED,PassThroughItemActivity.this);
         	
 	    }else if (sb.toString().contains("引擎忙")){
-	    
-	    	
+	    	speechRecognizer.cancel();
 		}else{
 	    Intent gradeIntent = new Intent(this, PassThroughGradeActivity.class);
 	    gradeIntent.putExtra("ratingNum", 0f);
