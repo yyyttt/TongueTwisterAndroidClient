@@ -7,9 +7,8 @@
         android:id="@+id/rl_group"
         android:layout_width="match_parent"
         android:layout_height="450dp"
-        android:layoutAnimation="@anim/anim_layout"
         android:layout_centerInParent="true"
-        >
+        android:layoutAnimation="@anim/anim_layout" >
 
         <RelativeLayout
             android:id="@+id/rl_reference"
@@ -25,7 +24,7 @@
             android:layout_height="120dp"
             android:layout_alignBottom="@id/rl_reference"
             android:layout_alignRight="@id/rl_reference"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="100dp"
             android:background="@drawable/selector_study_choose_background"
             android:clickable="true" >
 
@@ -43,7 +42,7 @@
             android:layout_width="160dp"
             android:layout_height="120dp"
             android:layout_below="@id/rl_pass_through"
-            android:layout_marginTop="-20dp"
+            android:layout_marginTop="-100dp"
             android:layout_toRightOf="@id/rl_pass_through"
             android:background="@drawable/selector_study_choose_background"
             android:clickable="true" >
@@ -55,6 +54,24 @@
             <TextView
                 style="@style/text_study_choose"
                 android:text="学习模式" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_pk"
+            android:layout_width="160dp"
+            android:layout_height="120dp"
+            android:layout_below="@id/rl_study"
+            android:layout_toLeftOf="@id/rl_study"
+            android:background="@drawable/selector_study_choose_background"
+            android:clickable="true" >
+
+            <ImageView
+                style="@style/image_fragment_content"
+                android:background="@drawable/image_pk" />
+
+            <TextView
+                style="@style/text_study_choose"
+                android:text="挑战模式" />
         </RelativeLayout>
     </RelativeLayout>
 
