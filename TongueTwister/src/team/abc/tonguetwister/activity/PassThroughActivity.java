@@ -18,6 +18,7 @@ import android.widget.TextView;
 import team.abc.tonguetwister.R;
 import team.abc.tonguetwister.adapter.GridviewAdapter;
 import team.abc.tonguetwister.constant.Constant;
+import team.abc.tonguetwister.constant.Level;
 import team.abc.tonguetwister.widget.ScrollLayout;
 import team.abc.tonguetwister.widget.TranslateAnimationWidget;
 
@@ -68,7 +69,7 @@ public class PassThroughActivity extends Activity {
 		tv_page = (TextView) findViewById(R.id.tv_page);
 		tv_page.setText("1");
 		tv_title = (TextView) findViewById(R.id.tv_title);
-		tv_title.setText(Constant.titles[0]);
+		tv_title.setText(Level.ARRAY[0]);
 		tv_title.setTypeface(Typeface.DEFAULT_BOLD);
 		Constant.init(PassThroughActivity.this);
 		param = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT,
@@ -158,7 +159,7 @@ public class PassThroughActivity extends Activity {
 			@Override
 			public void onAnimationEnd(Animation animation) {
 				tv_page.setText((page + 1) + "");
-				tv_title.setText(Constant.titles[page]);
+				tv_title.setText(Level.ARRAY[page]);
 
 				tv_page.startAnimation(AnimationUtils.loadAnimation(PassThroughActivity.this, R.anim.scale_out));
 				//题目转一圈    20160713 zsc

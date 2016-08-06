@@ -51,13 +51,10 @@ public class Constant {
 	public static int screenHeight = 0;
 	public static int screenWidth = 0;
 	public static float screenDensity = 0;
-	public static final String FILE_NAME = "goldInfo";// 金币存储的文件名
-	public static final int goldNum = 100;// 金币数目
 
 	public static int curentPage = 0;
 	public static int countPages = 0;
-	public static String[] titles = { "初入江湖", "小有名气", "名动一方", "天下闻名", "一代宗师", "超凡入圣", "天外飞仙" };
-
+	
 	public static void init(Activity context) {
 		if (screenDensity == 0 || screenWidth == 0 || screenHeight == 0) {
 			DisplayMetrics dm = new DisplayMetrics();
@@ -87,4 +84,13 @@ public class Constant {
 	public static final String NO_NETWORK = "未连接网络";
 	public static final String DISABLE_NETWORK = "网络不可用";
 	public static final String PREPARE_SUCCESS = "success";
+	
+	//录音
+	public static final String RECORD_DENIED = "检测到录音失败,请尝试按以下路径开启:"
+			+ "方法一,360卫士——软件管理——权限管理——吧嗒绕口令——使用话筒录音/通话录音——允许;"
+			+ "方法二,手机管家——权限管理——应用程序——吧嗒绕口令——录音——允许;"
+			+ "方法三,安全中心——授权管理——应用权限管理——吧嗒绕口令——录音——允许;"
+			+ "方法四,在设置中找到应用权限管理,设置录音权限为允许";
+	//按钮声明
+	public static final String BUTTON_EXPLAIN = "需要长按说话哦";
 }

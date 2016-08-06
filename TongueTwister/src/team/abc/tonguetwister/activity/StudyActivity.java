@@ -332,7 +332,7 @@ public class StudyActivity extends Activity implements OnClickListener {
 				//播放的时候判断是否有网络。
 				if (!NetWorkUtil
 						.isNetworkAvailable(MyApplication.getMyAppContext())) {
-					ShowMaterialDialog.showMaterialDialog(Constant.NO_NETWORK, StudyActivity.this);
+					ShowMaterialDialog.showMaterialDialog(Constant.NO_NETWORK,StudyActivity.this);
 					break;
 				}
 				

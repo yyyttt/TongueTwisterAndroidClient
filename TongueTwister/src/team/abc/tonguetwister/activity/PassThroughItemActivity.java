@@ -5,7 +5,6 @@
 package team.abc.tonguetwister.activity;
 
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.speech.RecognitionListener;
@@ -57,7 +56,6 @@ import com.baidu.speech.VoiceRecognitionService;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.DialogInterface;
 import android.content.Intent;
 
 public class PassThroughItemActivity extends Activity implements
@@ -87,12 +85,16 @@ public class PassThroughItemActivity extends Activity implements
 	private GestureDetector gestureDetector;
 	public boolean isNextEnabled;
 	private static final String TAG = "PassThroughItemActivity";
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_pass_through_item);
+	
+		
+		
 		Bundle bundle = getIntent().getExtras();
 		if (bundle != null) {
 			number = bundle.getInt("number");
@@ -224,20 +226,29 @@ public class PassThroughItemActivity extends Activity implements
 		switch (v.getId()) {
 
 		case R.id.btn_record:
-			initPCMData(number);
-			if (flagPCM == 1) {
-				btn_record.setImageResource(R.drawable.icon_record_un);
-				mAudioPlayer.stop();
-				flagPCM = 0;
-			} else {
-				btn_record.setImageResource(R.drawable.icon_record);
-				mAudioPlayer.play();
-				flagPCM = 1;
+			byte[] data=initPCMData(number);
+			if (data==null) {
+				Toast.makeText(PassThroughItemActivity.this, "还没有该录音文件或已删除", Toast.LENGTH_LONG).show();
+				
+			}else {
+				if (flagPCM == 1) {
+					btn_record.setImageResource(R.drawable.icon_record_un);
+					mAudioPlayer.stop();
+					flagPCM = 0;
+				} else {
+					btn_record.setImageResource(R.drawable.icon_record);
+					mAudioPlayer.play();
+					flagPCM = 1;
+				}	
 			}
+			
+			
 			break;
 
 		case R.id.btn_back:
 			startActivity(new Intent(this, PassThroughActivity.class));
+			overridePendingTransition(R.anim.push_right_in,
+					R.anim.push_right_out);
 			finish();
 			break;
 		default:
@@ -266,8 +277,7 @@ public class PassThroughItemActivity extends Activity implements
 					if (!NetWorkUtil.isNetworkAvailable(MyApplication
 							.getMyAppContext())) {
 						ShowMaterialDialog.showMaterialDialog(
-								Constant.NO_NETWORK,
-								PassThroughItemActivity.this);
+								Constant.NO_NETWORK,PassThroughItemActivity.this);
 						break;
 					}
 					if (!SpeechRecognizer
@@ -275,7 +285,6 @@ public class PassThroughItemActivity extends Activity implements
 						Log.i(TAG, "识别不可用……重启中");
 						speechRecognizer.destroy();
 						initRecognize();
-
 					}
 
 					begin_time = dfs.format(new Date());
@@ -299,7 +308,7 @@ public class PassThroughItemActivity extends Activity implements
 					speechTips.setVisibility(View.GONE);
 					dialog_refresh.show();
 					if (between < 1000) {
-						dialog_refresh.cancel();
+						dialog_refresh.cancel();    	
 					}
 					break;
 				}
@@ -334,7 +343,7 @@ public class PassThroughItemActivity extends Activity implements
 		mAudioPlayer.setAudioParam(audioParam);
 	}
 
-	private void initPCMData(Integer numberPCM) {
+	private byte[] initPCMData(Integer numberPCM) {
 
 		// 获取音频数据
 		filePath = getPCMDataPath()+ "/outfile" + numberPCM + ".pcm";
@@ -347,6 +356,7 @@ public class PassThroughItemActivity extends Activity implements
 		if (data == null) {
 			System.out.println(filePath + "：该路径下不存在文件！");
 		}
+		return data;
 
 	}
 
@@ -434,16 +444,25 @@ public class PassThroughItemActivity extends Activity implements
 		}
 		sb.append(":" + error);
 		System.out.println("识别失败：" + sb.toString());
-
 		// 貌似以下没有运行 by zsc
 		Log.i(TAG, "recognise error");
 		dialog_refresh.cancel();
-		Intent gradeIntent = new Intent(this, PassThroughGradeActivity.class);
-		gradeIntent.putExtra("ratingNum", 0f);
-		gradeIntent.putExtra("number", number);
-		startActivity(gradeIntent);
-		overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
-		finish();
+        if (sb.toString().contains("音频问题")) {
+        	speechRecognizer.destroy();
+        	ShowMaterialDialog.showMaterialDialog(
+					Constant.RECORD_DENIED,PassThroughItemActivity.this);
+        	
+	    }else if (sb.toString().contains("引擎忙")){
+	    	speechRecognizer.cancel();
+		}else{
+	    Intent gradeIntent = new Intent(this, PassThroughGradeActivity.class);
+	    gradeIntent.putExtra("ratingNum", 0f);
+	    gradeIntent.putExtra("number", number);
+	    startActivity(gradeIntent);
+	    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+	    finish();
+        }
+			
 		ratingbar.setRating(0);
 		TongueTwisterDetailsDb.getDbInstance(PassThroughItemActivity.this)
 				.passthrough_update(number, 0, 1);
