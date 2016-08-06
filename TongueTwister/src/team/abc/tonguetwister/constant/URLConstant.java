@@ -7,7 +7,7 @@ public class URLConstant {
 	public static final String LOGOUT_URL = BASE + "/NSPClient/logout.html";
 	
 	//app分享下载网址（有监控和鉴权）
-	public static final String SHARE_URL = BASE+"/TongueTwister/APKDownload";
+	public static final String SHARE_URL = BASE+"/TongueTwister/TongueTwister.apk";
 	//app更新网址（有监控）
 	public static final String UPDATE_URL = BASE+"/TongueTwister/APKUpdate";
 }
