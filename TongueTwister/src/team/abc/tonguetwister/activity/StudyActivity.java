@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -106,7 +107,7 @@ public class StudyActivity extends Activity implements OnClickListener {
 		Log.i(TAG, "onCreate");
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_study);
-		
+
 		switch (StudyMode.mode) {
 		case StudyMode.MODE_LIST:
 			tonguetwisterList = TTOperation.getAllTT();
@@ -288,6 +289,7 @@ public class StudyActivity extends Activity implements OnClickListener {
 	private void initView() {
 
 		tvTongueTwister = (TextView) findViewById(R.id.word);
+		tvTongueTwister.setMovementMethod(new ScrollingMovementMethod());
 		tvTongueTwisterTitle = (TextView) findViewById(R.id.title);
 		tvSpeekSpeedIndex = (TextView) findViewById(R.id.tv_speek_speed_index);
 
@@ -328,14 +330,15 @@ public class StudyActivity extends Activity implements OnClickListener {
 					ttsIsPause = true;
 				}
 			} else {
-				
-				//播放的时候判断是否有网络。
-				if (!NetWorkUtil
-						.isNetworkAvailable(MyApplication.getMyAppContext())) {
-					ShowMaterialDialog.showMaterialDialog(Constant.NO_NETWORK,StudyActivity.this);
+
+				// 播放的时候判断是否有网络。
+				if (!NetWorkUtil.isNetworkAvailable(MyApplication
+						.getMyAppContext())) {
+					ShowMaterialDialog.showMaterialDialog(Constant.NO_NETWORK,
+							StudyActivity.this);
 					break;
 				}
-				
+
 				int result = this.mSpeechSynthesizer.speak(tvTongueTwister
 						.getText().toString());
 				if (result < 0) {
@@ -424,20 +427,34 @@ public class StudyActivity extends Activity implements OnClickListener {
 
 	private void deployTongueTwister(int index) {
 
-		if (index == 0) {
-			ivFormerTT.setVisibility(View.GONE);
-		} else if (index == maxIndex) {
-			ivNextTT.setVisibility(View.GONE);
-		} else {
+		if (index > 0 && index < maxIndex) {
 			ivFormerTT.setVisibility(View.VISIBLE);
 			ivNextTT.setVisibility(View.VISIBLE);
+		} else {
+
+			if (maxIndex != 0) {
+
+				if (index == 0) {
+					ivFormerTT.setVisibility(View.GONE);
+					ivNextTT.setVisibility(View.VISIBLE);
+				}
+
+				if (index == maxIndex) {
+					ivNextTT.setVisibility(View.GONE);
+					ivFormerTT.setVisibility(View.VISIBLE);
+				}
+			} else {
+				ivFormerTT.setVisibility(View.GONE);
+				ivNextTT.setVisibility(View.GONE);
+			}
 		}
 
 		currentTwister = tonguetwisterList.get(index);
 
 		isCollection = TongueTwisterDetailsDb.getDbInstance(
-				MyApplication.getMyAppContext()).getSingleCollectState(currentTwister.getId());
-		//isCollection = currentTwister.getCollectionStatus();
+				MyApplication.getMyAppContext()).getSingleCollectState(
+				currentTwister.getId());
+		// isCollection = currentTwister.getCollectionStatus();
 
 		// 部署收藏状态
 		if (isCollection) {
@@ -457,9 +474,10 @@ public class StudyActivity extends Activity implements OnClickListener {
 		currentTwister = TTOperation.getRandom();
 
 		isCollection = TongueTwisterDetailsDb.getDbInstance(
-				MyApplication.getMyAppContext()).getSingleCollectState(currentTwister.getId());
-		
-		//isCollection = currentTwister.getCollectionStatus();
+				MyApplication.getMyAppContext()).getSingleCollectState(
+				currentTwister.getId());
+
+		// isCollection = currentTwister.getCollectionStatus();
 
 		// 部署收藏状态
 		if (isCollection) {
@@ -489,11 +507,11 @@ public class StudyActivity extends Activity implements OnClickListener {
 			Toast.makeText(this, "取消收藏", Toast.LENGTH_SHORT).show();
 
 		}
-		
-		TongueTwisterDetailsDb.getDbInstance(
-				MyApplication.getMyAppContext()).collect_update(currentTwister.getId(), isCollection);
-		
-		//currentTwister.setCollectionStatus(isCollection);
+
+		TongueTwisterDetailsDb.getDbInstance(MyApplication.getMyAppContext())
+				.collect_update(currentTwister.getId(), isCollection);
+
+		// currentTwister.setCollectionStatus(isCollection);
 	}
 
 }
