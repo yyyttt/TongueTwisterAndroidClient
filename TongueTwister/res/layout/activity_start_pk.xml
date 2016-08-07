@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background_pk" >
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/lv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/shape_lv_pk_content"
+            android:orientation="vertical"
+            android:padding="20dip" >
+
+            <TextView
+                style="@style/text_start_pk"
+                android:text="如果你的绕口令足够快、足够准，就快加入我们！" />
+
+            <TextView
+                style="@style/text_start_pk"
+                android:layout_marginBottom="25dip"
+                android:layout_marginTop="25dip"
+                android:text="一起跟时间PK！跟小伙伴们一决高下吧！" />
+
+            <TextView
+                style="@style/text_start_pk"
+                android:text="期待你的战绩能从排行榜中脱颖而出！快开始挑战吧！" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="20dp" >
+
+            <RelativeLayout
+                android:id="@+id/rl_start_pk"
+                style="@style/rl_start_pk"
+                android:layout_alignParentLeft="true" >
+
+                <ImageView
+                    style="@style/image_login_choose"
+                    android:src="@drawable/image_start_pk" />
+
+                <TextView
+                    android:id="@+id/tv_start"
+                    style="@style/tv_start"
+                    android:text="开始挑战" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_ranking"
+                style="@style/rl_start_pk"
+                android:layout_alignParentRight="true">
+
+                <ImageView
+                    style="@style/image_login_choose"
+                    android:src="@drawable/image_ranking" />
+
+                <TextView
+                    android:id="@+id/tv_ranking"
+                    style="@style/tv_start"
+                    android:text="查看排名" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+
+</FrameLayout>

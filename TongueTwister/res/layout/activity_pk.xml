@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.personal.xiaoshuai.countdowndemo.MainActivity">
+    tools:context="com.personal.xiaoshuai.countdowndemo.MainActivity"
+    >
 
     <TextView
         android:id="@+id/tv_show"

@@ -2,57 +2,61 @@
 <resources>
 
     <color name="slategray1">#74a474</color>
- <!-- 灰石色 -->
-    <!-- <color name="slategray">#8d8d65 </color>  灰石色 -->
-    <!-- <color name="lightslategray">#b5b58d</color>  亮灰石色 -->
+    <!-- 灰石色 -->
     <color name="lightslategray1">#9ccc9c</color>
- <!-- 亮灰石色 -->
+    <!-- 亮灰石色 -->
     <color name="deepslategray1">#5a8a5a</color>
- <!-- 深灰石色 -->
+    <!-- 深灰石色 -->
+    <color name="blue_pk">#42a5ce</color>
+    <!-- 蓝色 -->
+    <color name="bluelight_pk">#6acdf6</color>
+    <!-- 亮蓝色 -->
+    <color name="bluedeep_pk">#2e91ba</color>
+    <!-- 深蓝色 -->
     <color name="lightdeepslategray1">#b5b58d</color>
- <!-- 亮深灰石色 -->
+    <!-- 亮深灰石色 -->
     <color name="white">#FFFFFF</color>
- <!-- 纯白色 -->
+    <!-- 纯白色 -->
     <color name="trans_white1">#ecffffff</color>
- <!-- 高透明白色 -->
+    <!-- 高透明白色 -->
     <color name="deepyellow1">#c28e06</color>
- <!-- 深黄色 -->
+    <!-- 深黄色 -->
     <color name="marron">#cf3334</color>
- <!-- 暗红色 -->
+    <!-- 暗红色 -->
     <color name="skyblue1">#10afcf</color>
- <!-- 天蓝色 -->
+    <!-- 天蓝色 -->
     <color name="lightwhite1">#CBF3FB</color>
- <!-- 乳白色 -->
+    <!-- 乳白色 -->
     <color name="deepwhite1">#b7dfe7</color>
- <!-- 深乳白色 -->
+    <!-- 深乳白色 -->
     <color name="purple1">#5233ac</color>
- <!-- 紫色 -->
+    <!-- 紫色 -->
     <color name="lightpurple1">#6547bf</color>
- <!-- 浅紫色 -->
+    <!-- 浅紫色 -->
     <color name="deeppurple1">#3e1f98</color>
- <!-- 深紫色 -->
+    <!-- 深紫色 -->
     <color name="orange1">#da532c</color>
- <!-- 橘色 -->
+    <!-- 橘色 -->
     <color name="deeporange1">#c63f18</color>
- <!-- 深橘色 -->
+    <!-- 深橘色 -->
     <color name="lightorange1">#ee6740</color>
- <!-- 浅橘色 -->
+    <!-- 浅橘色 -->
     <color name="blue1">#00bef2</color>
- <!-- 蓝色 -->
+    <!-- 蓝色 -->
     <color name="lightblue1">#40cdf4</color>
- <!-- 浅蓝色 -->
+    <!-- 浅蓝色 -->
     <color name="deepblue1">#05a0ca</color>
- <!-- 深蓝色 -->
+    <!-- 深蓝色 -->
     <color name="smokygray1">#cedfde</color>
- <!-- 烟灰色 -->
+    <!-- 烟灰色 -->
     <color name="deepsmokygray1">#889998</color>
- <!-- 深烟灰色 -->
+    <!-- 深烟灰色 -->
     <color name="blackish_green1">#217c73</color>
- <!-- 墨绿色 -->
+    <!-- 墨绿色 -->
     <color name="trans_green1">#d099b47c</color>
- <!-- 透明绿 -->
+    <!-- 透明绿 -->
     <color name="deeptrans_green1">#99b47c</color>
- <!-- 深透明绿 -->
+    <!-- 深透明绿 -->
     <color name="ivory">#FFFFF0</color>
     <!-- 象牙色 -->
     <color name="lightyellow">#FFFFE0</color>

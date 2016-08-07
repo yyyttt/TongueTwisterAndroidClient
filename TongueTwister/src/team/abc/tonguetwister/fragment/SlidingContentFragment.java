@@ -9,6 +9,7 @@ package team.abc.tonguetwister.fragment;
 import team.abc.tonguetwister.R;
 import team.abc.tonguetwister.activity.MainActivity;
 import team.abc.tonguetwister.activity.PassThroughActivity;
+import team.abc.tonguetwister.activity.PkStartActivity;
 import team.abc.tonguetwister.activity.StudyModeChooseActivity;
 import android.app.Fragment;
 import android.content.Intent;
@@ -27,7 +28,7 @@ import android.widget.RelativeLayout;
 public class SlidingContentFragment extends Fragment implements OnClickListener {
 
 	private View currentView;
-	private RelativeLayout rlStudy, rlPassThrough,rlGroup;
+	private RelativeLayout rlStudy, rlPassThrough, rlGroup, rlPk;
 	private ImageView ivControl;
 	private MainActivity aty;
 	private static final String TAG = "SlidingContentFragment";
@@ -54,13 +55,16 @@ public class SlidingContentFragment extends Fragment implements OnClickListener 
 
 		rlGroup = (RelativeLayout) currentView.findViewById(R.id.rl_group);
 		rlStudy = (RelativeLayout) currentView.findViewById(R.id.rl_study);
-		rlPassThrough = (RelativeLayout) currentView.findViewById(R.id.rl_pass_through);
+		rlPassThrough = (RelativeLayout) currentView
+				.findViewById(R.id.rl_pass_through);
+		rlPk = (RelativeLayout) currentView.findViewById(R.id.rl_pk);
 		ivControl = (ImageView) currentView.findViewById(R.id.iv_control);
-		
+
 		rlStudy.setOnClickListener(this);
 		rlPassThrough.setOnClickListener(this);
+		rlPk.setOnClickListener(this);
 		ivControl.setOnClickListener(this);
-		
+
 		return currentView;
 	}
 
@@ -78,7 +82,7 @@ public class SlidingContentFragment extends Fragment implements OnClickListener 
 
 		switch (v.getId()) {
 		case R.id.rl_study:
-			
+
 			Intent intentStudy = new Intent();
 			intentStudy.setClass(aty, StudyModeChooseActivity.class);
 			startActivity(intentStudy);
@@ -88,16 +92,21 @@ public class SlidingContentFragment extends Fragment implements OnClickListener 
 			intentPassThrough.setClass(aty, PassThroughActivity.class);
 			startActivity(intentPassThrough);
 			break;
-		
-		case R.id.iv_control:
-			
-			aty.openPanel();
-			
+		case R.id.rl_pk:
+			Intent intentPk = new Intent();
+			intentPk.setClass(aty, PkStartActivity.class);
+			startActivity(intentPk);
 			break;
-			
+
+		case R.id.iv_control:
+
+			aty.openPanel();
+
+			break;
+
 		}
 	}
-	
+
 	@Override
 	public void onResume() {
 		// TODO Auto-generated method stub

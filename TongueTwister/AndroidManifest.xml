@@ -70,6 +70,12 @@
             android:name="team.abc.tonguetwister.activity.PassThroughGradeActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="team.abc.tonguetwister.activity.PkStartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="team.abc.tonguetwister.activity.PkActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="team.abc.tonguetwister.activity.StudyTTChooseActivity"
             android:screenOrientation="portrait" />
         <activity
