@@ -4,14 +4,14 @@
     <item android:state_pressed="false"><shape>
             <corners android:radius="10dp" />
 
-            <solid android:color="@color/trans_green1" />
+            <solid android:color="@color/trans_green" />
         </shape></item>
     <item android:state_pressed="true"><shape>
             <corners android:radius="10dp" />
 
-            <stroke android:width="3dip" android:color="@color/smokygray1" />
+            <stroke android:width="3dip" android:color="@color/smokygray" />
 
-            <solid android:color="@color/deeptrans_green1" />
+            <solid android:color="@color/deeptrans_green" />
         </shape></item>
 
 </selector>

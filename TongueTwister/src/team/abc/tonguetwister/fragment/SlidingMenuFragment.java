@@ -222,7 +222,7 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 		tvLogout.setEnabled(!b);
 		if (b) {
 			tvLogout.setTextColor(MyApplication.getAppResources().getColor(
-					R.color.deepsmokygray1));
+					R.color.deepsmokygray));
 		} else {
 			tvLogout.setTextColor(MyApplication.getAppResources().getColor(
 					R.color.white));

@@ -35,7 +35,7 @@
             android:paddingRight="20dp"
             android:text="南南有个篮篮，篮篮装着盘盘，盘盘放着碗碗，碗碗盛着饭饭。南南翻了篮篮，篮篮扣了盘盘，盘盘打了碗碗，碗碗撒了饭饭."
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/trans_white1"/>
+            android:textColor="@color/trans_white"/>
 
         <ProgressBar
             android:id="@+id/proBar"
@@ -89,7 +89,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="语速："
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/deepyellow1" />
+                android:textColor="@color/deepyellow" />
 
             <team.abc.tonguetwister.widget.RangeSliderView
                 android:id="@+id/rsv_speek_speed"
@@ -107,7 +107,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="3X"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/deepyellow1" />
+                android:textColor="@color/deepyellow" />
         </LinearLayout>
 
         <LinearLayout
@@ -121,7 +121,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="发声："
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:textColor="@color/deepyellow1" />
+                android:textColor="@color/deepyellow" />
 
             <team.abc.tonguetwister.widget.SegmentControlView
                 android:id="@+id/sc_gender"
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:textSize="16sp"
-                sc:colors="@color/deepyellow1"
+                sc:colors="@color/deepyellow"
                 sc:cornerRadius="5dip"
                 sc:direction="horizon"
                 sc:horizonGap="8dip"
@@ -151,7 +151,7 @@
             android:layout_height="60dp"
             android:src="@drawable/icon_begin"
             cb:cb_pressedRingWidth="5dp"
-            cb:cb_color= "@color/skyblue1" 
+            cb:cb_color= "@color/skyblue" 
             android:layout_centerHorizontal="true"/>
         
         <team.abc.tonguetwister.widget.CircleButton
@@ -163,7 +163,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             cb:cb_pressedRingWidth="5dp"
-            cb:cb_color= "@color/skyblue1" />
+            cb:cb_color= "@color/skyblue" />
         
         <team.abc.tonguetwister.widget.CircleButton
             android:id="@+id/cbtn_collection"
@@ -174,7 +174,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             cb:cb_pressedRingWidth="5dp"
-            cb:cb_color= "@color/skyblue1" />
+            cb:cb_color= "@color/skyblue" />
        
     </RelativeLayout>
 

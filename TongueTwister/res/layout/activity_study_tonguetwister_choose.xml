@@ -3,13 +3,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" 
-    android:background="@color/smokygray1">
+    android:background="@color/smokygray">
 
     <team.abc.tonguetwister.widget.PinnedSectionListView
         android:id="@+id/lv_tonguetwisters"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:divider="@color/smokygray1"
+        android:divider="@color/smokygray"
         android:dividerHeight="4dp"
         android:headerDividersEnabled="false" />
    

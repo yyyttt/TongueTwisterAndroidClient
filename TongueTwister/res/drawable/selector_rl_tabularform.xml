@@ -2,12 +2,12 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:state_pressed="false"><shape>
-            <gradient android:angle="45" android:endColor="@color/lightpurple1" android:startColor="@color/purple1" />
+            <gradient android:angle="45" android:endColor="@color/lightpurple" android:startColor="@color/purple" />
 
             <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp" />
         </shape></item>
     <item android:state_pressed="true"><shape>
-            <gradient android:angle="45" android:endColor="@color/purple1" android:startColor="@color/deeppurple1" />
+            <gradient android:angle="45" android:endColor="@color/purple" android:startColor="@color/deeppurple" />
 
             <!-- <stroke android:width="3dp" android:color="#99b47c" /> -->
 
