@@ -190,6 +190,7 @@ public class PassThroughItemActivity extends Activity implements
 		ratingbar.setRating(ratingNumPass);
 		btn_start = (CircleButton) findViewById(R.id.btn_start);
 		btn_record = (CircleButton) findViewById(R.id.btn_record);
+		btn_start.setEnabled(true);
 		btn_record.setOnClickListener(this);
 
 		btn_back = (CircleButton) findViewById(R.id.btn_back);
@@ -226,6 +227,7 @@ public class PassThroughItemActivity extends Activity implements
 		switch (v.getId()) {
 
 		case R.id.btn_record:
+			btn_start.setEnabled(false);
 			byte[] data=initPCMData(number);
 			if (data==null) {
 				Toast.makeText(PassThroughItemActivity.this, "还没有该录音文件或已删除", Toast.LENGTH_LONG).show();
@@ -276,6 +278,7 @@ public class PassThroughItemActivity extends Activity implements
 				case MotionEvent.ACTION_DOWN:
 					if (!NetWorkUtil.isNetworkAvailable(MyApplication
 							.getMyAppContext())) {
+						dialog_refresh.cancel();  
 						ShowMaterialDialog.showMaterialDialog(
 								Constant.NO_NETWORK,PassThroughItemActivity.this);
 						break;
@@ -330,6 +333,7 @@ public class PassThroughItemActivity extends Activity implements
 					System.out.println(PcmRelated.showState((Integer) msg.obj));
 					if ((Integer) msg.obj == 1) {
 						btn_record.setImageResource(R.drawable.icon_record_un);
+						btn_start.setEnabled(true);
 					}
 					break;
 				}
@@ -346,7 +350,7 @@ public class PassThroughItemActivity extends Activity implements
 	private byte[] initPCMData(Integer numberPCM) {
 
 		// 获取音频数据
-		filePath = getPCMDataPath()+ "/outfile" + numberPCM + ".pcm";
+		filePath = PathConstant.getPCMDataPath()+ "/outfile" + numberPCM + ".pcm";
 		byte[] data = PcmRelated.getPCMData(filePath);
 		mAudioPlayer.setDataSource(data);
 
@@ -358,18 +362,6 @@ public class PassThroughItemActivity extends Activity implements
 		}
 		return data;
 
-	}
-
-	private String getPCMDataPath() {
-
-		File file = new File(PathConstant.PCM_DATA_PATH);
-
-		// 创建文件夹及父文件夹。
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-
-		return file.getAbsolutePath();
 	}
 
 	@Override

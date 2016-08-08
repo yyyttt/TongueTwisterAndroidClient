@@ -101,5 +101,10 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@drawable/selector_rl_pk_start</item>
     </style>
-
+     <style name="pkRatingBar" parent="@android:style/Widget.RatingBar">
+        <item name="android:progressDrawable">@drawable/pk_rating_bar</item>
+        <item name="android:isIndicator">true</item>
+        <item name="android:minHeight">32dip</item>
+        <item name="android:maxHeight">32dip</item>
+    </style>
 </resources>
