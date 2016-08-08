@@ -136,7 +136,7 @@ public class PassThroughGradeActivity extends Activity implements
 	private void initPCMData() {
 
 		// 获取音频数据
-		filePath = getPCMDataPath() + "/outfile" + number + ".pcm";
+		filePath = PathConstant.getPCMDataPath() + "/outfile" + number + ".pcm";
 		byte[] data = PcmRelated.getPCMData(filePath);
 		mAudioPlayer.setDataSource(data);
 
@@ -147,16 +147,6 @@ public class PassThroughGradeActivity extends Activity implements
 			System.out.println(filePath + "：该路径下不存在文件！");
 		}
 
-	}
-
-	private String getPCMDataPath() {
-
-		File file = new File(PathConstant.PCM_DATA_PATH);
-		// 创建文件夹及父文件夹。
-		if (!file.exists()) {
-			file.mkdirs();
-		}
-		return file.getAbsolutePath();
 	}
 
 	/*
