@@ -76,6 +76,9 @@
             android:name="team.abc.tonguetwister.activity.PkActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="team.abc.tonguetwister.activity.RankingActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name="team.abc.tonguetwister.activity.StudyTTChooseActivity"
             android:screenOrientation="portrait" />
         <activity

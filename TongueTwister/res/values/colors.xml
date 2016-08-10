@@ -49,5 +49,11 @@
     <!-- 深透明绿 -->
     <color name="bluedeep_pk">#2e91ba</color>
     <!-- 深蓝色 -->
+    <color name="silvery_pk">#d0a0a8ad</color>
+    <!-- 银色 -->
+     <color name="silvery_deep_pk">#788085</color>
+    <!-- 深银色 -->
+    <color name="black">#000000</color>
+    <!-- 银色 -->
 
 </resources>
