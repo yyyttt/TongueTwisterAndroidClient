@@ -1,9 +1,9 @@
 package team.abc.tonguetwister.adapter;
 
 import java.util.List;
-import java.util.Map;
 
 import team.abc.tonguetwister.R;
+import team.abc.tonguetwister.bean.UserInfo;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,31 +16,34 @@ import android.widget.TextView;
 public class RankingListAdapt extends BaseAdapter {
 
 	private Context context;
-	//private List<Map<String, Object>> listItem;
+	private List<UserInfo> listItems; // 存放所有用户数据
 	private static final String TAG = "RankListAdapter";
+	private static final int RANK_NUM = 8; // 最多返回前8名
 
-	public RankingListAdapt(List<Map<String, Object>> listItem, Context context) {
+	public RankingListAdapt(Context context, List<UserInfo> listItems,
+			int resource) {
 		this.context = context;
-		//this.listItem = listItem;
+		this.listItems = listItems;
 		Log.i(TAG, "<<<<<<<<<<<<<<<<<<<<<<<<<<<");
 	}
 
 	@Override
 	public int getCount() {
-		// TODO Auto-generated method stub
-		//return listItem.size();
-		return 10;
+		if (listItems.size() > RANK_NUM) {
+			return RANK_NUM;
+		} else {
+			return listItems.size();
+		}
+
 	}
 
 	@Override
 	public Object getItem(int position) {
-		// TODO Auto-generated method stub
-		return position;
+		return listItems.get(position);
 	}
 
 	@Override
 	public long getItemId(int position) {
-		// TODO Auto-generated method stub
 		return position;
 	}
 
@@ -50,36 +53,48 @@ public class RankingListAdapt extends BaseAdapter {
 		ViewHolder holderRank;
 		if (convertView == null) {
 			holderRank = new ViewHolder();
-			// 说明为标题
 			convertView = LayoutInflater.from(context).inflate(
 					R.layout.ranking_list_item, null);
 			// 参数
 			holderRank.tvRankNum = (TextView) convertView
 					.findViewById(R.id.tv_rank_num);
-			holderRank.tvRankName = (TextView) convertView
-					.findViewById(R.id.tv_rank_name);
-			holderRank.tvRankDone = (TextView) convertView
-					.findViewById(R.id.tv_rank_done);
-			holderRank.ivRankUser = (ImageView) convertView
-					.findViewById(R.id.iv_rank_user);
+			holderRank.tvUserName = (TextView) convertView
+					.findViewById(R.id.tv_user_name);
+			holderRank.tvChallengePassNum = (TextView) convertView
+					.findViewById(R.id.tv_challenge_pass_num);
+			holderRank.ivUserGender = (ImageView) convertView
+					.findViewById(R.id.iv_user_gender);
 			convertView.setTag(holderRank);
 		} else {
 			holderRank = (ViewHolder) convertView.getTag();
 		}
-		Log.i(TAG, "<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-		holderRank.tvRankNum.setText("1");
-		holderRank.tvRankName.setText("14578548979");
-		holderRank.tvRankDone.setText("12");
-		holderRank.ivRankUser
-				.setBackgroundResource(R.drawable.head_portrait_secret);
+		// 对ListItem中每一个用户的信息进行获取
+		holderRank.tvRankNum.setText(listItems.get(position).getUserId() + "");
+		holderRank.tvUserName.setText(listItems.get(position).getUserName()
+				+ "");
+		holderRank.tvChallengePassNum.setText(listItems.get(position)
+				.getChallengePassNum() + "");
+		if (listItems.get(position).getUserGender() == 1) {
+			holderRank.ivUserGender
+					.setBackgroundResource(R.drawable.head_portrait_female);
+		} else if (listItems.get(position).getUserGender() == 0) {
+			holderRank.ivUserGender
+					.setBackgroundResource(R.drawable.head_portrait_male);
+		} else {
+			holderRank.ivUserGender
+					.setBackgroundResource(R.drawable.head_portrait_secret);
+
+		}
+		holderRank.ivUserGender.setBackgroundResource(listItems.get(position)
+				.getUserGender());
 		;
 		return convertView;
 	}
 
 	static class ViewHolder {
-		ImageView ivRankUser;
+		ImageView ivUserGender;
 		TextView tvRankNum;
-		TextView tvRankName;
-		TextView tvRankDone;
+		TextView tvUserName;
+		TextView tvChallengePassNum;
 	}
 }

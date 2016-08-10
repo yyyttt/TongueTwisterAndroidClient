@@ -7,10 +7,12 @@
     android:background="@drawable/background_pk_item" >
 
     <RelativeLayout
+        android:id="@+id/rl_pk_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:background="@color/skyblue"
         android:orientation="vertical" >
 
         <TextView
@@ -31,21 +33,31 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/tv_number"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dip"
             android:layout_marginLeft="20dip"
             android:layout_marginRight="20dip"
             android:text="南南有个篮篮，篮篮装着盘盘，盘盘放着碗碗，碗碗盛着饭饭。南南翻了篮篮，篮篮扣了盘盘，盘盘打了碗碗，碗碗撒了饭饭."
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/white"
             android:textSize="20sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rl_pk_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:background="@drawable/shape_lv_pk"
+        android:orientation="vertical"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp" >
 
         <LinearLayout
             android:id="@+id/lv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tv_word"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="30dip"
-            android:layout_marginBottom="20dip"
             android:background="@drawable/shape_timer_pk"
             android:orientation="horizontal"
             android:padding="5dp" >
@@ -79,17 +91,17 @@
             android:id="@+id/lv_life_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/lv_time"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal" >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
                 android:text="生命值  "
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textColor="@color/white"
-                android:layout_gravity="center_vertical"
                 android:textSize="20sp" />
 
             <RatingBar
