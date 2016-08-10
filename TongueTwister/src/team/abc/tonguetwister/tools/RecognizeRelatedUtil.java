@@ -5,7 +5,7 @@ import team.abc.tonguetwister.R;
 import team.abc.tonguetwister.constant.Constant;
 import team.abc.tonguetwister.constant.PathConstant;
 
-public class TTSRelatedUtil {
+public class RecognizeRelatedUtil {
 	public static void bindParams(Intent intent) {
 		intent.putExtra(Constant.EXTRA_SOUND_START, R.raw.bdspeech_recognition_start);
 		intent.putExtra(Constant.EXTRA_SOUND_END, R.raw.bdspeech_speech_end);

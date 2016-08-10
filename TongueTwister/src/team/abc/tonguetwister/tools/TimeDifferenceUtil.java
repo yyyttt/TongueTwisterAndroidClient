@@ -39,4 +39,18 @@ public class TimeDifferenceUtil {
 		return time;
 	}
 
+	
+	public static String timeSetting(long time){
+		if (time<10) {
+			return "00:0"+time;
+		}else if (time>=10 && time<=60) {
+			return "00:"+time;
+		}else{
+			//暂不处理
+			return "";
+		}
+		
+		
+		
+	}
 }

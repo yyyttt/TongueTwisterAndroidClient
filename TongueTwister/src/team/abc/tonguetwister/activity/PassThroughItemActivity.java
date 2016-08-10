@@ -33,7 +33,7 @@ import team.abc.tonguetwister.tools.NetWorkUtil;
 import team.abc.tonguetwister.tools.ScoreCountUtil;
 import team.abc.tonguetwister.tools.StringSimilarityUtil;
 import team.abc.tonguetwister.tools.TTOperation;
-import team.abc.tonguetwister.tools.TTSRelatedUtil;
+import team.abc.tonguetwister.tools.RecognizeRelatedUtil;
 import team.abc.tonguetwister.tools.TimeDifferenceUtil;
 import team.abc.tonguetwister.tools.WordCountUtil;
 import team.abc.tonguetwister.widget.BuileGestureExt;
@@ -295,7 +295,7 @@ public class PassThroughItemActivity extends Activity implements
 					// speechRecognizer.cancel();
 					
 					Intent intent = new Intent();
-					TTSRelatedUtil.bindParams(intent);
+					RecognizeRelatedUtil.bindParams(intent);
 					intent.putExtra(Constant.EXTRA_OUTFILE, filePath);//输出文件位置
 					intent.putExtra("vad", "touch");
 					speechRecognizer.startListening(intent);

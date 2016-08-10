@@ -33,16 +33,16 @@ public class RankingActivity extends Activity {
 	private List<UserInfo> getData() {
 		// TODO Auto-generated method stub
 		List<UserInfo> list = new ArrayList<UserInfo>();
-		UserInfo user1 = new UserInfo(1, "18292001111", 0, 9);
-		UserInfo user2 = new UserInfo(2, "18292002222", 0, 8);
-		UserInfo user3 = new UserInfo(3, "18292003333", 0, 7);
-		UserInfo user4 = new UserInfo(4, "18292004444", 0, 6);
-		UserInfo user5 = new UserInfo(5, "18292005555", 0, 5);
-		list.add(user1);
-		list.add(user2);
-		list.add(user3);
-		list.add(user4);
-		list.add(user5);
+//		UserInfo user1 = new UserInfo(1, "18292001111", 0, 9);
+//		UserInfo user2 = new UserInfo(2, "18292002222", 0, 8);
+//		UserInfo user3 = new UserInfo(3, "18292003333", 0, 7);
+//		UserInfo user4 = new UserInfo(4, "18292004444", 0, 6);
+//		UserInfo user5 = new UserInfo(5, "18292005555", 0, 5);
+//		list.add(user1);
+//		list.add(user2);
+//		list.add(user3);
+//		list.add(user4);
+//		list.add(user5);
 		return list;
 	}
 

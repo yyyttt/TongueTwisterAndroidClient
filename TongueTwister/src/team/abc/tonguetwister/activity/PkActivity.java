@@ -26,10 +26,10 @@ import team.abc.tonguetwister.constant.Constant;
 import team.abc.tonguetwister.constant.PathConstant;
 import team.abc.tonguetwister.tools.HanZiToPinYinUtil;
 import team.abc.tonguetwister.tools.NetWorkUtil;
+import team.abc.tonguetwister.tools.RecognizeRelatedUtil;
 import team.abc.tonguetwister.tools.ScoreCountUtil;
 import team.abc.tonguetwister.tools.StringSimilarityUtil;
 import team.abc.tonguetwister.tools.TTOperation;
-import team.abc.tonguetwister.tools.TTSRelatedUtil;
 import team.abc.tonguetwister.tools.TimeDifferenceUtil;
 import team.abc.tonguetwister.tools.WordCountUtil;
 import team.abc.tonguetwister.widget.CircleButton;
@@ -44,9 +44,14 @@ import java.util.Date;
 import org.json.JSONObject;
 
 import com.baidu.speech.VoiceRecognitionService;
+import com.flyco.animation.BounceEnter.BounceTopEnter;
+import com.flyco.animation.SlideExit.SlideBottomExit;
+import com.flyco.dialog.widget.MaterialDialog;
 
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 
 public class PkActivity extends Activity implements
@@ -82,7 +87,7 @@ public class PkActivity extends Activity implements
 		setContentView(R.layout.activity_pk);
 		
 		ratingbar = (RatingBar) findViewById(R.id.pk_ratingbar);
-		ratingbar.setRating(5);
+		ratingbar.setRating(3);
         
 		dialog_refresh = new CustomProgressDialog(PkActivity.this,
 				"打分中...", R.anim.loading);
@@ -94,15 +99,14 @@ public class PkActivity extends Activity implements
 	}
 
 	private void initValue(int numberPass) {
-
-		tongueTwister = TTOperation.getAppointedOneTT(numberPass);
+		tongueTwister =TTOperation.getAppointedOneTT(numberPass);
 		wordContent = tongueTwister.getContent();
 		wordNumber = WordCountUtil.wordCount(wordContent);
 		wordTime=(wordNumber/4)+1;
 		millisInFuture=wordTime*1000;
 		wordConvertToPinyin = HanZiToPinYinUtil
 				.converterToSpellAll(wordContent);
-		filePath = PathConstant.getPCMDataPath()+ "/outfile" + number + ".pcm";
+		filePath = PathConstant.getPCMDataPath()+ "/pk" + number + ".pcm";
 		
 		initView();
 	}
@@ -113,10 +117,10 @@ public class PkActivity extends Activity implements
 		tv_word.setText(wordContent);
 
 		tv_number = (TextView) findViewById(R.id.tv_number);
-		tv_number.setText("第" + (number + 1) + "战");
+		tv_number.setText("挑战" + (number + 1));
 		
 		tv_countdown=(TextView) findViewById(R.id.tv_countdown);
-		tv_countdown.setText(wordTime+" s");
+		tv_countdown.setText(TimeDifferenceUtil.timeSetting(wordTime));
 		
 		btn_start = (CircleButton) findViewById(R.id.btn_start);
 		btn_start.setOnTouchListener(new View.OnTouchListener() {
@@ -144,7 +148,7 @@ public class PkActivity extends Activity implements
 					// speechRecognizer.cancel();
 					
 					Intent intent = new Intent();
-					TTSRelatedUtil.bindParams(intent);
+					RecognizeRelatedUtil.bindParams(intent);
 					intent.putExtra(Constant.EXTRA_OUTFILE, filePath);//输出文件位置
 					intent.putExtra("vad", "touch");
 					speechRecognizer.startListening(intent);
@@ -173,6 +177,8 @@ public class PkActivity extends Activity implements
 
 
 	}
+	
+	
 
     private void initRecognize() {
 		speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this,
@@ -185,6 +191,7 @@ public class PkActivity extends Activity implements
 		addContentView(speechTips, new FrameLayout.LayoutParams(
 				ViewGroup.LayoutParams.MATCH_PARENT,
 				ViewGroup.LayoutParams.MATCH_PARENT));
+
 	}
 
 	/*
@@ -274,16 +281,23 @@ public class PkActivity extends Activity implements
 	    }else if (sb.toString().contains("引擎忙")){
 	    	speechRecognizer.cancel();
 		}else{
-	    Toast.makeText(PkActivity.this, "挑战失败", Toast.LENGTH_LONG).show();
 	    if (ratingbar.getRating()==1f) {
+	    	 Toast.makeText(PkActivity.this, "挑战结束", Toast.LENGTH_LONG).show();
+	  	   
         	ratingbar.setRating(0);
+        	Intent rankIntent = new Intent(this, RankingActivity.class);
+        	rankIntent.putExtra("number", number);
+        	startActivity(rankIntent);
+      	    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 			finish();
-		}
+		}else{
+	    Toast.makeText(PkActivity.this, "挑战失败,生命值-1", Toast.LENGTH_LONG).show();
+		   
         ratingbar.setRating(ratingbar.getRating()-1f);
         number=number+1;
 		initValue(number);
         }
-       
+		}
         
 		
 
@@ -321,18 +335,23 @@ public class PkActivity extends Activity implements
 				.wordCount(nbest.get(0) + strEnd2Finish);
 		Log.e("识别出的汉字个数", "resultNumber:" + resultNumber + " wordnumber:"
 				+ wordNumber);
-		ratingNum = ScoreCountUtil.scoreCount(number, (resultNumber * 1000)
+		ratingNum = ScoreCountUtil.pkScoreCount((resultNumber * 1000)
 				/ between, similiarRatio);
 		dialog_refresh.cancel();
-		if (ratingNum>=3f) {
-			Toast.makeText(PkActivity.this, "挑战成功", Toast.LENGTH_LONG).show();	
+		if (ratingNum==1f) {
+			Toast.makeText(PkActivity.this, "挑战成功,生命值+1", Toast.LENGTH_LONG).show();	
 			ratingbar.setRating(ratingbar.getRating()+1f);
 		}else{
-			Toast.makeText(PkActivity.this, "挑战失败", Toast.LENGTH_LONG).show();		
-           if (ratingbar.getRating()==1f) {
+			  if (ratingbar.getRating()==1f) {
         	   ratingbar.setRating(0);
+        	   Toast.makeText(PkActivity.this, "挑战结束", Toast.LENGTH_LONG).show();		
+        	   Intent rankIntent = new Intent(PkActivity.this, RankingActivity.class);
+        	   rankIntent.putExtra("number", number);
+        	   startActivity(rankIntent);
+	      	   overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         	   finish();
 			}else {
+				Toast.makeText(PkActivity.this, "挑战失败,生命值-1", Toast.LENGTH_LONG).show();		
 				ratingbar.setRating(ratingbar.getRating()-1f);
 				
 			}
@@ -377,9 +396,9 @@ public class PkActivity extends Activity implements
 	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 
-//			startActivity(new Intent(this, MainActivity.class));
-//			overridePendingTransition(R.anim.push_right_in,
-//					R.anim.push_right_out);
+			startActivity(new Intent(this, PkStartActivity.class));
+			overridePendingTransition(R.anim.push_right_in,
+					R.anim.push_right_out);
 			finish();
 		}
 		return false;
@@ -409,7 +428,7 @@ public class PkActivity extends Activity implements
 	         */
 	        @Override
 	        public void onTick(long millisUntilFinished) {
-	        	tv_countdown.setText(millisUntilFinished / countDownInterval + "s");
+	        	tv_countdown.setText(TimeDifferenceUtil.timeSetting(millisUntilFinished / countDownInterval));
 	        	}
 
 	        /**
@@ -417,18 +436,55 @@ public class PkActivity extends Activity implements
 	         */
 	        @Override
 	        public void onFinish() { 
+	        	tv_countdown.setText("00:00");
+	        	
 	        	speechRecognizer.stopListening();
-	        	  if (ratingbar.getRating()==1f) {
-	           	   ratingbar.setRating(0);
-	           	   finish();
+	        	dialog_refresh.cancel();
+	        	
+	        	if (ratingbar.getRating()==1f) {
+	           	  ratingbar.setRating(0);
+	           	  Toast.makeText(PkActivity.this, "挑战结束", Toast.LENGTH_LONG).show();		
+	        	  
+	           	  Intent rankIntent = new Intent(PkActivity.this, RankingActivity.class);
+	           	  rankIntent.putExtra("number", number);
+	           	  startActivity(rankIntent);
+	      	      overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+				  finish();
 	   			}else {
+	   				Toast.makeText(PkActivity.this, "规定时间未完成挑战,生命值-1", Toast.LENGTH_LONG).show();		
 	   				ratingbar.setRating(ratingbar.getRating()-1f);
-	   				number=number+1;
+					number=number+1;
 	   				initValue(number);
+//	   				showMaterialDialog(
+//	   						"规定时间未完成挑战,生命值-1",PkActivity.this);
 	   				
 	   			}
 	        }
 	    }
+	 
+	 public void showMaterialDialog(String msg,final Context mContext) {
+			final MaterialDialog dialog = new MaterialDialog(
+					mContext);
+
+			dialog.btnNum(1).content(msg).btnText("知道了")
+					.showAnim(new BounceTopEnter())
+					.dismissAnim(new SlideBottomExit()).show();
+		
+			dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+
+				@Override
+				public void onDismiss(DialogInterface dialog) {
+					
+					ratingbar.setRating(ratingbar.getRating()-1f);
+					number=number+1;
+	   				initValue(number);
+	   				dialog.cancel();
+
+				}
+			});
+			 dialog.setCanceledOnTouchOutside(false);
+		}
+
 
 
 }
