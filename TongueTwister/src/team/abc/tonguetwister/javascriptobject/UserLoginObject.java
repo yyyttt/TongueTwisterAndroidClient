@@ -1,11 +1,14 @@
 package team.abc.tonguetwister.javascriptobject;
 
+import team.abc.bean.UserInfo;
 import team.abc.tonguetwister.activity.MainActivity;
 import team.abc.tonguetwister.activity.WebLoginActivity;
-import android.app.Activity;
+import team.abc.tonguetwister.sharedpreference.UserInfoSharedPreference;
 import android.content.Intent;
 import android.webkit.JavascriptInterface;
 import android.widget.Toast;
+
+import com.baidu.tts.e.l;
 
 public class UserLoginObject {
 	
@@ -30,6 +33,15 @@ public class UserLoginObject {
 		intent.putExtra("userName", name);
 		intent.putExtra("userID", id);
 		intent.putExtra("gender", gender);
+		
+		UserInfo userInfo = new UserInfo();
+		userInfo.setUserId(Long.parseLong(id));
+		userInfo.setUserName(name);
+		userInfo.setUserGender(gender);
+		userInfo.setChallengePassNum(0);
+		
+		//存储用户信息
+		UserInfoSharedPreference.storeUserInfo(userInfo);
 		
 		aty.startActivity(intent);
 		aty.finish();

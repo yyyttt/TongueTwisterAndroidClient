@@ -15,6 +15,7 @@ import team.abc.tonguetwister.constant.Gender;
 import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.javascriptobject.UserLoginObject;
 import team.abc.tonguetwister.javascriptobject.UserLogoutObject;
+import team.abc.tonguetwister.sharedpreference.UserInfoSharedPreference;
 import team.abc.tonguetwister.thread.UpdateChecker;
 import team.abc.tonguetwister.tools.ShareUtil;
 import team.abc.tonguetwister.widget.UpdateDialog;
@@ -214,6 +215,9 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 
 		startActivity(new Intent(this.getActivity(), MainActivity.class));
 		this.getActivity().finish();
+		
+		//清除用户数据
+		UserInfoSharedPreference.clearUserInfo();
 
 	}
 
