@@ -51,7 +51,7 @@ public class PkStartActivity extends Activity implements OnClickListener {
 			finish();
 			break;
 		case R.id.rl_ranking:
-			startActivity(new Intent(PkStartActivity.this, PkActivity.class));
+			startActivity(new Intent(PkStartActivity.this, RankingActivity.class));
 			finish();
 			break;
 		default:
