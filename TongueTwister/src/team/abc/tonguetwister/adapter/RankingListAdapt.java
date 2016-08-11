@@ -2,8 +2,9 @@ package team.abc.tonguetwister.adapter;
 
 import java.util.List;
 
+import team.abc.bean.UserInfo;
 import team.abc.tonguetwister.R;
-import team.abc.tonguetwister.bean.UserInfo;
+import team.abc.tonguetwister.constant.Gender;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -69,25 +70,25 @@ public class RankingListAdapt extends BaseAdapter {
 			holderRank = (ViewHolder) convertView.getTag();
 		}
 		// 对ListItem中每一个用户的信息进行获取
-		holderRank.tvRankNum.setText(listItems.get(position).getUserId() + "");
+		Log.i(TAG, "<<<<<<<<<<<<<<<<<<<<<<<<<<<" + listItems);
+		holderRank.tvRankNum.setText(getItemId(position) + 1 + "");
+
 		holderRank.tvUserName.setText(listItems.get(position).getUserName()
 				+ "");
-		holderRank.tvChallengePassNum.setText(listItems.get(position)
-				.getChallengePassNum() + "");
-		if (listItems.get(position).getUserGender() == 1) {
+		Log.i(TAG, "<<<<<<<<<<<<<<<<<<<<<<<<<<<"
+				+ (listItems.get(position).getUserGender() == Gender.FEMALE));
+		if (listItems.get(position).getUserGender() == Gender.FEMALE) {
 			holderRank.ivUserGender
 					.setBackgroundResource(R.drawable.head_portrait_female);
-		} else if (listItems.get(position).getUserGender() == 0) {
+		} else if (listItems.get(position).getUserGender() == Gender.MALE) {
 			holderRank.ivUserGender
 					.setBackgroundResource(R.drawable.head_portrait_male);
 		} else {
 			holderRank.ivUserGender
 					.setBackgroundResource(R.drawable.head_portrait_secret);
-
 		}
-		holderRank.ivUserGender.setBackgroundResource(listItems.get(position)
-				.getUserGender());
-		;
+		holderRank.tvChallengePassNum.setText(listItems.get(position)
+				.getChallengePassNum() + "");
 		return convertView;
 	}
 

@@ -20,7 +20,7 @@
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_margin="10dp"
-        android:src="@drawable/head_portrait_secret" />
+         />
 
     <TextView
         android:id="@+id/tv_user_name"
