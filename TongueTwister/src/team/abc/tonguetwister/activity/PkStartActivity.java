@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ public class PkStartActivity extends Activity implements OnClickListener {
 	private RelativeLayout rlStartPk;
 	private RelativeLayout rlRanking;
 	private LinearLayout lvContent;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,15 +50,15 @@ public class PkStartActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.rl_start_pk:
 			startActivity(new Intent(PkStartActivity.this, PkActivity.class));
-			finish();
 			break;
 		case R.id.rl_ranking:
 			startActivity(new Intent(PkStartActivity.this, RankingActivity.class));
-			finish();
 			break;
 		default:
 			break;
 
 		}
 	}
+	
+	
 }

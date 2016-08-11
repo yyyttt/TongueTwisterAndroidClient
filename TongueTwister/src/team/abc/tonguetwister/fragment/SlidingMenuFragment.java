@@ -6,6 +6,7 @@ package team.abc.tonguetwister.fragment;
  * 
  */
 
+import team.abc.bean.UserInfo;
 import team.abc.tonguetwister.R;
 import team.abc.tonguetwister.activity.AboutUsActivity;
 import team.abc.tonguetwister.activity.LoginChooseActivity;
@@ -13,14 +14,11 @@ import team.abc.tonguetwister.activity.MainActivity;
 import team.abc.tonguetwister.application.MyApplication;
 import team.abc.tonguetwister.constant.Gender;
 import team.abc.tonguetwister.constant.URLConstant;
-import team.abc.tonguetwister.javascriptobject.UserLoginObject;
 import team.abc.tonguetwister.javascriptobject.UserLogoutObject;
 import team.abc.tonguetwister.sharedpreference.UserInfoSharedPreference;
 import team.abc.tonguetwister.thread.UpdateChecker;
 import team.abc.tonguetwister.tools.ShareUtil;
-import team.abc.tonguetwister.widget.UpdateDialog;
 import android.app.Fragment;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -28,12 +26,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.webkit.WebView.FindListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -43,7 +38,7 @@ import android.widget.Toast;
 public class SlidingMenuFragment extends Fragment implements OnClickListener {
 
 	private View currentView;
-	private String userName, userID;
+	private String userName;
 	private int gender;
 	private ImageView ivHeadPortrait;
 	private TextView tvUserName;
@@ -156,10 +151,14 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
-		Intent intent = getActivity().getIntent();
-		userName = intent.getStringExtra("userName");
-		userID = intent.getStringExtra("userID");
-		gender = intent.getIntExtra("gender", Gender.SECRET);
+		UserInfo userInfo = UserInfoSharedPreference.getUserInfo();
+		
+		if(userInfo != null){
+			userName = userInfo.getUserName();
+			gender = userInfo.getUserGender();
+		}else{
+			gender = Gender.SECRET;
+		}
 
 	}
 
@@ -213,11 +212,12 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 		CookieManager cookieManager = CookieManager.getInstance();
 		cookieManager.removeAllCookie();
 
+		//清除用户数据
+		UserInfoSharedPreference.clearUserInfo();
+
 		startActivity(new Intent(this.getActivity(), MainActivity.class));
 		this.getActivity().finish();
 		
-		//清除用户数据
-		UserInfoSharedPreference.clearUserInfo();
 
 	}
 

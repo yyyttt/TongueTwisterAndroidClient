@@ -30,10 +30,16 @@ public class UserInfoSharedPreference {
 	public static UserInfo getUserInfo(){
 		UserInfo userInfo = new UserInfo();
 		
-		userInfo.setUserId(sharedPreferences.getLong(userId, -1));
+		long id = sharedPreferences.getLong(userId, -1);
+		if(id == -1){
+			return null;
+		}
+		
+		userInfo.setUserId(id);
 		userInfo.setUserName(sharedPreferences.getString(userName, ""));
 		userInfo.setUserGender(sharedPreferences.getInt(userGender, -1));
 		userInfo.setChallengePassNum(sharedPreferences.getInt(ChallengePassNum, 0));
+		
 		
 		return userInfo;
 		

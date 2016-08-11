@@ -30,9 +30,6 @@ public class UserLoginObject {
 		
 		
 		Intent intent = new Intent(aty,MainActivity.class);
-		intent.putExtra("userName", name);
-		intent.putExtra("userID", id);
-		intent.putExtra("gender", gender);
 		
 		UserInfo userInfo = new UserInfo();
 		userInfo.setUserId(Long.parseLong(id));
