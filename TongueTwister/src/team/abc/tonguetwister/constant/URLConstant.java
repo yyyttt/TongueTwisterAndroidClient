@@ -10,4 +10,7 @@ public class URLConstant {
 	public static final String SHARE_URL = BASE+"/TongueTwister/APKDownload";
 	//app更新网址（有监控）
 	public static final String UPDATE_URL = BASE+"/TongueTwister/APKUpdate";
+	
+	//用户信息的hessian接口
+	public static final String USER_INFO_URL = BASE+"/TongueTwister/UserInfoHessian";
 }
