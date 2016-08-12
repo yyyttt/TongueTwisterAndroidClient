@@ -9,13 +9,17 @@ import com.flyco.dialogsamples.utils.T;
 import team.abc.tonguetwister.R;
 import team.abc.tonguetwister.animation.Jumper;
 import team.abc.tonguetwister.application.MyApplication;
+import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.dao.TongueTwisterDetailsDb;
 import team.abc.tonguetwister.init.TTSInit;
 import team.abc.tonguetwister.tools.NetWorkUtil;
+import team.abc.tonguetwister.tools.RecordPermissionUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,8 +37,10 @@ public class StartScreenActivity extends Activity {
 	private final String NO_NETWORK = "未连接网络";
 	private final String DISABLE_NETWORK = "网络不可用";
 	private final String PREPARE_SUCCESS = "success";
-
+	public static final String ISFIRSTRECORD="IsFirstRecord";
+	
 	private final String TAG = "StartScreenActivity";
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +97,19 @@ public class StartScreenActivity extends Activity {
 			if (tongueTwisterDetailsDb.Db_getMorePassThrough().size() == 0) {
 				tongueTwisterDetailsDb.passThroughAddMore();
 			}
+			
+			
+			//判断是否首次登陆
+			SharedPreferences s = StartScreenActivity.this.getSharedPreferences(ISFIRSTRECORD,Context.MODE_PRIVATE);
+			int count=s.getInt("coun", 0);
+			if(count==0){//第一次开启
+				RecordPermissionUtil.isHasPermission(StartScreenActivity.this);
+
+				SharedPreferences.Editor editor = StartScreenActivity.this.getSharedPreferences(ISFIRSTRECORD, Context.MODE_PRIVATE).edit();
+				editor.putInt("coun", 1);
+				editor.commit();
+			}
+			
 
 			return PREPARE_SUCCESS;
 		}

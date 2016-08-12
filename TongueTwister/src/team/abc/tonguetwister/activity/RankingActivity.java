@@ -11,6 +11,7 @@ import team.abc.tonguetwister.adapter.RankingListAdapt;
 import team.abc.tonguetwister.constant.Gender;
 import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.sharedpreference.UserInfoSharedPreference;
+import team.abc.tonguetwister.tools.NetWorkUtil;
 import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -54,9 +55,10 @@ public class RankingActivity extends Activity {
 
 		if (localUserInfo == null) {
 			hasLogin = false;
+			//未登录时将头像设置成secret
+			ivRankUser.setImageResource(R.drawable.head_portrait_secret);
 		} else {
 			hasLogin = true;
-			
 			//初始化头像
 			setHeadProtrait(localUserInfo.getUserGender());
 			
@@ -64,12 +66,15 @@ public class RankingActivity extends Activity {
 
 		if (passNum != -1 && hasLogin) {
 			localUserInfo.setChallengePassNum(passNum);
-			UserInfoSharedPreference.storeUserInfo(localUserInfo);
-						
+			UserInfoSharedPreference.storeUserInfo(localUserInfo);			
 		}
 			
 
-		new UserInfoDataAchieveTask().execute();
+		if(NetWorkUtil.isNetworkAvailable(this)){			
+			new UserInfoDataAchieveTask().execute();
+		}else{
+			Toast.makeText(this, "网络异常", Toast.LENGTH_SHORT).show();
+		}
 
 	}
 
@@ -93,23 +98,23 @@ public class RankingActivity extends Activity {
 
 	public class UserInfoDataAchieveTask extends AsyncTask<Void, Void, String> {
 
+		
 		@Override
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
-
+			
+			//通知列表数据更新。
 			adapter.notifyDataSetChanged();
-
-			Toast.makeText(RankingActivity.this,
-					"本地用户的排名为: " + localUserRanking, Toast.LENGTH_LONG).show();
-			
-			//将结果显示在界面上。
-			setResult();
-			
-
+			if(result != null){//说明有异常
+				Toast.makeText(RankingActivity.this, result, Toast.LENGTH_SHORT).show();
+			}else{
+				//将结果显示在界面上。
+				setResult();				
+			}
 			super.onPostExecute(result);
-
 		}
 
+		
 		@Override
 		protected String doInBackground(Void... params) {
 			IUserInfoHessian userInfoHessian = null;
@@ -138,6 +143,7 @@ public class RankingActivity extends Activity {
 			if (hasLogin) {
 				localUserRanking = userInfoHessian.getPassNum(localUserInfo);
 			}
+			
 			return null;
 		}
 
@@ -161,6 +167,7 @@ public class RankingActivity extends Activity {
 			break;
 
 		default:
+			
 			break;
 		}
 
@@ -176,7 +183,13 @@ public class RankingActivity extends Activity {
 		
 		//已登录，未挑战
 		if(hasLogin && (passNum == -1)){
-			tvResult.setText("您上次成功挑战"+localUserInfo.getChallengePassNum()+"关     "+"目前排名第"+localUserRanking+"名");
+			passNum = localUserInfo.getChallengePassNum();
+			if(passNum == 0){//首次安装客户端，但以前登陆挑战过。				
+				tvResult.setText("目前排名第"+localUserRanking+"名");
+			}else{				
+				tvResult.setText("您上次成功挑战"+localUserInfo.getChallengePassNum()+"关     "+"目前排名第"+localUserRanking+"名");
+			}
+			
 			return;
 		}
 		

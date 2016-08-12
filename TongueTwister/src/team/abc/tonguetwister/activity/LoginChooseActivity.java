@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.View.OnClickListener;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 public class LoginChooseActivity extends Activity implements OnClickListener {
 
@@ -41,6 +42,16 @@ public class LoginChooseActivity extends Activity implements OnClickListener {
 			startActivity(new Intent(LoginChooseActivity.this,
 					WebLoginActivity.class));
 			finish();
+			break;
+		case R.id.lv_qq_login:
+
+			Toast.makeText(this, "攻城师们正在完善此功能……", Toast.LENGTH_SHORT).show();
+			
+			break;
+		case R.id.lv_weixin_login:
+
+			Toast.makeText(this, "攻城师们正在完善此功能……", Toast.LENGTH_SHORT).show();
+			
 			break;
 
 		default:

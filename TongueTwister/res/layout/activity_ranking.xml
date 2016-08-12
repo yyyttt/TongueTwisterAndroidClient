@@ -41,7 +41,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="20dip"
-            android:src="@drawable/head_portrait_secret" />
+            />
         
         <TextView
             android:id="@+id/tv_result"
@@ -49,7 +49,6 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="15dip"
             android:layout_marginTop="10dip"
-            android:text="你目前的排名为11名    已成功挑战10关"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:textColor="@color/blackish_green" />
     </LinearLayout>

@@ -47,6 +47,7 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 	private TextView tvAboutus;
 	private TextView tvUpdatingOnline;
 	private TextView tvShareOnline;
+	private TextView tvFeedbackOnline;
 	private LinearLayout lvLogin;
 	public ListView listview;
 
@@ -107,12 +108,14 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 				.findViewById(R.id.tv_updating_online);
 		tvShareOnline = (TextView) currentView
 				.findViewById(R.id.tv_share_online);
+		tvFeedbackOnline = (TextView)currentView.findViewById(R.id.tv_feedback_online);
 		lvLogin = (LinearLayout) currentView.findViewById(R.id.lv_login);
 		ivHeadPortrait = (ImageView) currentView
 				.findViewById(R.id.iv_head_portrait);
 		tvAboutus.setOnClickListener(this);
 		tvUpdatingOnline.setOnClickListener(this);
 		tvShareOnline.setOnClickListener(this);
+		tvFeedbackOnline.setOnClickListener(this);
 		tvLogout.setOnClickListener(this);
 		lvLogin.setOnClickListener(this);
 	}
@@ -249,6 +252,11 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.tv_share_online:
 			ShareUtil.shareTo(getActivity(), "挑战绕口令？尽在吧嗒绕口令-让你的舌头快快舞动起来~"+URLConstant.SHARE_URL);
+			break;
+		case R.id.tv_feedback_online:
+
+			Toast.makeText(getActivity(), "攻城师们正在完善此功能……", Toast.LENGTH_SHORT).show();
+			
 			break;
 		case R.id.tv_logout:
 			userLogout();

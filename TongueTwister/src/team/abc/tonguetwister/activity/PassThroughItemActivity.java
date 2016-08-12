@@ -148,7 +148,9 @@ public class PassThroughItemActivity extends Activity implements
 
 							if (number == 0) {
 
-								PassThroughItemActivity.this.finish();
+								//进行屏蔽，其他界面无此功能。by zsc 2016/8/12
+								//PassThroughItemActivity.this.finish();
+								
 							} else {
 								number = number - 1;
 								ratingNum = TongueTwisterDetailsDb

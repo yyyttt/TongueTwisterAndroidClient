@@ -78,16 +78,6 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		SharedPreferences s = MainActivity.this.getSharedPreferences(URLConstant.ISFIRSTRECORD,Context.MODE_PRIVATE);
-		int count=s.getInt("coun", 0);
-		if(count==0){//第一次开启
-			RecordPermissionUtil.isHasPermission(MainActivity.this);
-
-			SharedPreferences.Editor editor = MainActivity.this.getSharedPreferences(URLConstant.ISFIRSTRECORD, Context.MODE_PRIVATE).edit();
-			editor.putInt("coun", 1);
-			editor.commit();
-		}
-
 	}
 
 	@Override
