@@ -85,12 +85,6 @@ public class Constant {
 	public static final String DISABLE_NETWORK = "网络不可用";
 	public static final String PREPARE_SUCCESS = "success";
 	
-	//录音
-	public static final String RECORD_DENIED = "检测到录音失败,请尝试按以下路径开启:"
-			+ "方法一,360卫士——软件管理——权限管理——吧嗒绕口令——使用话筒录音/通话录音——允许;"
-			+ "方法二,手机管家——权限管理——应用程序——吧嗒绕口令——录音——允许;"
-			+ "方法三,安全中心——授权管理——应用权限管理——吧嗒绕口令——录音——允许;"
-			+ "方法四,在设置中找到应用权限管理,设置录音权限为允许";
 	//按钮声明
 	public static final String BUTTON_EXPLAIN = "需要长按说话哦";
 }
