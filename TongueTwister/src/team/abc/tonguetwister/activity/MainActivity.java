@@ -6,9 +6,13 @@ import com.flyco.dialog.listener.OnBtnClickL;
 import com.flyco.dialog.widget.MaterialDialog;
 
 import team.abc.tonguetwister.R;
+import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.fragment.SlidingContentFragment;
 import team.abc.tonguetwister.fragment.SlidingMenuFragment;
+import team.abc.tonguetwister.tools.RecordPermissionUtil;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v4.widget.SlidingPaneLayout.PanelSlideListener;
@@ -73,6 +77,16 @@ public class MainActivity extends Activity {
 
 			}
 		});
+		
+		SharedPreferences s = MainActivity.this.getSharedPreferences(URLConstant.ISFIRSTRECORD,Context.MODE_PRIVATE);
+		int count=s.getInt("coun", 0);
+		if(count==0){//第一次开启
+			RecordPermissionUtil.isHasPermission(MainActivity.this);
+
+			SharedPreferences.Editor editor = MainActivity.this.getSharedPreferences(URLConstant.ISFIRSTRECORD, Context.MODE_PRIVATE).edit();
+			editor.putInt("coun", 1);
+			editor.commit();
+		}
 
 	}
 

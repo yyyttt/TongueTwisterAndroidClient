@@ -34,6 +34,7 @@ import team.abc.tonguetwister.tools.ScoreCountUtil;
 import team.abc.tonguetwister.tools.StringSimilarityUtil;
 import team.abc.tonguetwister.tools.TTOperation;
 import team.abc.tonguetwister.tools.RecognizeRelatedUtil;
+import team.abc.tonguetwister.tools.RecordPermissionUtil;
 import team.abc.tonguetwister.tools.TimeDifferenceUtil;
 import team.abc.tonguetwister.tools.WordCountUtil;
 import team.abc.tonguetwister.widget.BuileGestureExt;
@@ -104,6 +105,10 @@ public class PassThroughItemActivity extends Activity implements
 		initValue(number, ratingNum);
 
 		initRecognize();
+		
+		if (!RecordPermissionUtil.isHasPermission(PassThroughItemActivity.this)) {
+			RecordPermissionUtil.RecordDialog(PassThroughItemActivity.this);
+		}
 
 		gestureDetector = new BuileGestureExt(this,
 				new BuileGestureExt.OnGestureResult() {
@@ -283,6 +288,12 @@ public class PassThroughItemActivity extends Activity implements
 								Constant.NO_NETWORK,PassThroughItemActivity.this);
 						break;
 					}
+					
+					if (!RecordPermissionUtil.isHasPermission(PassThroughItemActivity.this)) {
+						dialog_refresh.cancel();    
+						RecordPermissionUtil.RecordDialog(PassThroughItemActivity.this);
+						break;
+					}
 					if (!SpeechRecognizer
 							.isRecognitionAvailable(PassThroughItemActivity.this)) {
 						Log.i(TAG, "识别不可用……重启中");
@@ -302,7 +313,10 @@ public class PassThroughItemActivity extends Activity implements
 
 					break;
 				case MotionEvent.ACTION_UP:
-
+					if (!RecordPermissionUtil.isHasPermission(PassThroughItemActivity.this)||!NetWorkUtil.isNetworkAvailable(MyApplication
+							.getMyAppContext())) {
+						break;
+					}
 					end_time = dfs.format(new Date());
 					time_difference = TimeDifferenceUtil.timeDifference(
 							begin_time, end_time);
@@ -441,8 +455,7 @@ public class PassThroughItemActivity extends Activity implements
 		dialog_refresh.cancel();
         if (sb.toString().contains("音频问题")) {
         	speechRecognizer.destroy();
-        	ShowMaterialDialog.showMaterialDialog(
-					Constant.RECORD_DENIED,PassThroughItemActivity.this);
+//        	RecordPermissionUtil.RecordDialog(PassThroughItemActivity.this);
         	
 	    }else if (sb.toString().contains("引擎忙")){
 	    	speechRecognizer.cancel();

@@ -24,9 +24,11 @@ import team.abc.tonguetwister.application.MyApplication;
 import team.abc.tonguetwister.bean.TongueTwister;
 import team.abc.tonguetwister.constant.Constant;
 import team.abc.tonguetwister.constant.PathConstant;
+import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.tools.HanZiToPinYinUtil;
 import team.abc.tonguetwister.tools.NetWorkUtil;
 import team.abc.tonguetwister.tools.RecognizeRelatedUtil;
+import team.abc.tonguetwister.tools.RecordPermissionUtil;
 import team.abc.tonguetwister.tools.ScoreCountUtil;
 import team.abc.tonguetwister.tools.StringSimilarityUtil;
 import team.abc.tonguetwister.tools.TTOperation;
@@ -53,6 +55,8 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.media.MediaRecorder;
 
 public class PkActivity extends Activity implements
 		RecognitionListener {
@@ -95,6 +99,9 @@ public class PkActivity extends Activity implements
 		initValue(0);
 
 		
+		if (!RecordPermissionUtil.isHasPermission(PkActivity.this)) {
+			RecordPermissionUtil.RecordDialog(PkActivity.this);
+		}
 
 	}
 
@@ -130,10 +137,14 @@ public class PkActivity extends Activity implements
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
 					if (!NetWorkUtil.isNetworkAvailable(MyApplication
-							.getMyAppContext())) {
-						dialog_refresh.cancel();    	
+							.getMyAppContext())) {  	
 						ShowMaterialDialog.showMaterialDialog(
 								Constant.NO_NETWORK,PkActivity.this);
+						break;
+					}
+					if (!RecordPermissionUtil.isHasPermission(PkActivity.this)) {
+					
+						RecordPermissionUtil.RecordDialog(PkActivity.this);
 						break;
 					}
 					if (!SpeechRecognizer
@@ -158,7 +169,11 @@ public class PkActivity extends Activity implements
 
 					break;
 				case MotionEvent.ACTION_UP:
-				    myCountDownTimer.cancel();
+					if (!RecordPermissionUtil.isHasPermission(PkActivity.this)||!NetWorkUtil.isNetworkAvailable(MyApplication
+							.getMyAppContext())) {
+						break;
+					}
+					 myCountDownTimer.cancel();   
 					end_time = dfs.format(new Date());
 					time_difference = TimeDifferenceUtil.timeDifference(
 							begin_time, end_time);
@@ -275,9 +290,6 @@ public class PkActivity extends Activity implements
 		dialog_refresh.cancel();
         if (sb.toString().contains("音频问题")) {
         	speechRecognizer.destroy();
-        	ShowMaterialDialog.showMaterialDialog(
-					Constant.RECORD_DENIED,PkActivity.this);
-        	
 	    }else if (sb.toString().contains("引擎忙")){
 	    	speechRecognizer.cancel();
 		}else{
@@ -396,7 +408,6 @@ public class PkActivity extends Activity implements
 	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 
-			startActivity(new Intent(this, PkStartActivity.class));
 			overridePendingTransition(R.anim.push_right_in,
 					R.anim.push_right_out);
 			finish();
