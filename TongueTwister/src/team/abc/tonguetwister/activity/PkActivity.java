@@ -347,6 +347,8 @@ public class PkActivity extends Activity implements
 				/ between, similiarRatio);
 		dialog_refresh.cancel();
 		if (ratingNum==1f) {
+			 Toast.makeText(PkActivity.this, "挑战成功，进入下一关", Toast.LENGTH_LONG).show();		
+        	 
 			number=number+1;
 			initValue(number);
 		}else{
@@ -454,9 +456,7 @@ public class PkActivity extends Activity implements
 	           	  startActivity(rankIntent);
 	      	      overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 				  finish();
-	   			}else {
-//	   				Toast.makeText(PkActivity.this, "规定时间未完成挑战,生命值-1", Toast.LENGTH_LONG).show();		
-	   				
+	   			}else {	   				
 	   				ShowMaterialDialog.showMaterialDialog("规定时间未完成挑战,生命值-1",PkActivity.this);
 	   				ratingbar.setRating(ratingbar.getRating()-1f);
 	   			}
