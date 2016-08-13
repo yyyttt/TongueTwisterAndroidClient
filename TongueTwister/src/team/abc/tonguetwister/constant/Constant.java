@@ -83,6 +83,7 @@ public class Constant {
     //网络状况
 	public static final String NO_NETWORK = "未连接网络";
 	public static final String DISABLE_NETWORK = "网络不可用";
+	public static final String EXCEPTION_NETWORK = "网络异常";
 	public static final String PREPARE_SUCCESS = "success";
 	
 	//按钮声明

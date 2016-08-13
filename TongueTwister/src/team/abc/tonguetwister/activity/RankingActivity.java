@@ -8,6 +8,7 @@ import team.abc.bean.UserInfo;
 import team.abc.ihessian.IUserInfoHessian;
 import team.abc.tonguetwister.R;
 import team.abc.tonguetwister.adapter.RankingListAdapt;
+import team.abc.tonguetwister.constant.Constant;
 import team.abc.tonguetwister.constant.Gender;
 import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.sharedpreference.UserInfoSharedPreference;
@@ -74,7 +75,7 @@ public class RankingActivity extends Activity {
 		if(NetWorkUtil.isNetworkAvailable(this)){			
 			new UserInfoDataAchieveTask().execute();
 		}else{
-			Toast.makeText(this, "网络异常", Toast.LENGTH_SHORT).show();
+			Toast.makeText(this, Constant.EXCEPTION_NETWORK, Toast.LENGTH_SHORT).show();
 		}
 
 	}
@@ -112,13 +113,12 @@ public class RankingActivity extends Activity {
 		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			
-			//通知列表数据更新。
-			adapter.notifyDataSetChanged();
-			listView.startLayoutAnimation();
-			
 			if(result != null){//说明有异常
 				Toast.makeText(RankingActivity.this, result, Toast.LENGTH_SHORT).show();
 			}else{
+				//通知列表数据更新。
+				adapter.notifyDataSetChanged();
+				listView.startLayoutAnimation();
 				//将结果显示在界面上。
 				setResult();				
 			}
@@ -130,31 +130,33 @@ public class RankingActivity extends Activity {
 		protected String doInBackground(Void... params) {
 			IUserInfoHessian userInfoHessian = null;
 			HessianProxyFactory factory = new HessianProxyFactory();
+			factory.setOverloadEnabled(true);
+			factory.setHessian2Reply(false);
 			try {
-				factory.setHessian2Reply(false);
 				userInfoHessian = (IUserInfoHessian) factory.create(
 						IUserInfoHessian.class, URLConstant.USER_INFO_URL);
-			} catch (MalformedURLException e) {
+				// 插入本地用户
+				if (hasLogin && (passNum != -1)) {
+					userInfoHessian.insertOrUpdateUser(localUserInfo);
+				}
 
-				return "网络异常";
+				// 获取列表
+				List<UserInfo> list = userInfoHessian.getUsersOrderByRanking(TEN_ITEMS);
+				listItems.addAll(list);
+
+				// 获取本地用户排名
+				if (hasLogin) {
+					localUserRanking = userInfoHessian.getPassNum(localUserInfo);
+				}
+				
+			} catch (Exception e) {
+
+				Log.i(TAG, Constant.EXCEPTION_NETWORK);
+				
+				return Constant.EXCEPTION_NETWORK;
 
 			}
 
-			// 插入本地用户
-			if (hasLogin && (passNum != -1)) {
-				userInfoHessian.insertOrUpdateUser(localUserInfo);
-			}
-
-			// 获取列表
-			List<UserInfo> list = userInfoHessian.getUsersOrderByRanking(TEN_ITEMS);
-			listItems.addAll(list);
-			Log.i(TAG, "<<<<<<<<<<<<<<<<<<<<<<<<<<<" + listItems);
-
-			// 获取本地用户排名
-			if (hasLogin) {
-				localUserRanking = userInfoHessian.getPassNum(localUserInfo);
-			}
-			
 			return null;
 		}
 
