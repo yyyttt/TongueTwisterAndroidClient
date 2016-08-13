@@ -19,7 +19,7 @@ public class RankingListAdapt extends BaseAdapter {
 	private Context context;
 	private List<UserInfo> listItems; // 存放所有用户数据
 	private static final String TAG = "RankListAdapter";
-	private static final int RANK_NUM = 8; // 最多返回前8名
+	private static final int RANK_NUM = 10; // 最多返回前8名
 
 	public RankingListAdapt(Context context, List<UserInfo> listItems,
 			int resource) {

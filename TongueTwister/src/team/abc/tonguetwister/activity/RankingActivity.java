@@ -28,6 +28,7 @@ public class RankingActivity extends Activity {
 	private ListView listView;
 	private List<UserInfo> listItems;
 	private static final String TAG = "RankingActivity";
+	public static final int TEN_ITEMS = 10;
 	private UserInfo localUserInfo;
 	private RankingListAdapt adapter;
 	private int localUserRanking = -1;
@@ -95,6 +96,14 @@ public class RankingActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onStart();
 	}
+	
+	@Override
+	protected void onResume() {
+
+		listView.startLayoutAnimation();
+		
+		super.onResume();
+	}
 
 	public class UserInfoDataAchieveTask extends AsyncTask<Void, Void, String> {
 
@@ -105,6 +114,8 @@ public class RankingActivity extends Activity {
 			
 			//通知列表数据更新。
 			adapter.notifyDataSetChanged();
+			listView.startLayoutAnimation();
+			
 			if(result != null){//说明有异常
 				Toast.makeText(RankingActivity.this, result, Toast.LENGTH_SHORT).show();
 			}else{
@@ -135,7 +146,7 @@ public class RankingActivity extends Activity {
 			}
 
 			// 获取列表
-			List<UserInfo> list = userInfoHessian.getUsersOrderByRanking(6);
+			List<UserInfo> list = userInfoHessian.getUsersOrderByRanking(TEN_ITEMS);
 			listItems.addAll(list);
 			Log.i(TAG, "<<<<<<<<<<<<<<<<<<<<<<<<<<<" + listItems);
 

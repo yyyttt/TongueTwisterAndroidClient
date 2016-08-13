@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="450dp"
         android:layout_centerInParent="true"
-        android:layoutAnimation="@anim/anim_layout" >
+        android:layoutAnimation="@anim/anim_layout_from_buttom" >
 
         <RelativeLayout
             android:id="@+id/rl_reference"

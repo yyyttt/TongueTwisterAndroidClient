@@ -68,7 +68,8 @@
         <ListView
             android:id="@+id/list_ranking"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layoutAnimation="@anim/anim_layout_from_left" />
     </LinearLayout>
 
 </RelativeLayout>

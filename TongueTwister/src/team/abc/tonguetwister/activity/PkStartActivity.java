@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 public class PkStartActivity extends Activity implements OnClickListener {
 	private TextView tvStart;
+	private RelativeLayout rlButtonsPk;
 	private RelativeLayout rlStartPk;
 	private RelativeLayout rlRanking;
 	private LinearLayout lvContent;
@@ -34,10 +35,17 @@ public class PkStartActivity extends Activity implements OnClickListener {
 		// TODO Auto-generated method stub
 		super.onStart();
 	}
+	
+	@Override
+	protected void onResume() {
+		rlButtonsPk.startLayoutAnimation();
+		super.onResume();
+	}
 
 	private void initialView() {
 		tvStart = (TextView) findViewById(R.id.tv_start);
 		lvContent = (LinearLayout) findViewById(R.id.lv_content);
+		rlButtonsPk = (RelativeLayout) findViewById(R.id.rl_buttons_pk);
 		rlStartPk = (RelativeLayout) findViewById(R.id.rl_start_pk);
 		rlRanking= (RelativeLayout) findViewById(R.id.rl_ranking);
 		rlStartPk.setOnClickListener(this);

@@ -14,7 +14,7 @@
         android:layout_width="270dip"
         android:layout_height="300dip"
         android:layout_gravity="center"
-        android:layoutAnimation="@anim/anim_layout"
+        android:layoutAnimation="@anim/anim_layout_from_buttom"
         android:padding="10dip" >
 
         <RelativeLayout

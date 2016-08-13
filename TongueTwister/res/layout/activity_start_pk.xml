@@ -40,10 +40,12 @@
         </LinearLayout>
 
         <RelativeLayout
+            android:id="@+id/rl_buttons_pk"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_margin="20dp" >
+            android:layout_margin="20dp" 
+            android:layoutAnimation="@anim/anim_layout_from_buttom">
 
             <RelativeLayout
                 android:id="@+id/rl_start_pk"

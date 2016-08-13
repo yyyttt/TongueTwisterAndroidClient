@@ -7,11 +7,11 @@
 
     <TextView
         android:id="@+id/tv_rank_num"
-        android:layout_width="wrap_content"
+        android:layout_width="45dp"
         android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingRight="10dp"
         android:text="rank num"
+        android:paddingLeft="7dp"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/silvery_deep_pk" />
 
