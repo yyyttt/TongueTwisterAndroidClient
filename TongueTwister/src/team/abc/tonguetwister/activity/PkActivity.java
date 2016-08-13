@@ -24,7 +24,6 @@ import team.abc.tonguetwister.application.MyApplication;
 import team.abc.tonguetwister.bean.TongueTwister;
 import team.abc.tonguetwister.constant.Constant;
 import team.abc.tonguetwister.constant.PathConstant;
-import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.tools.HanZiToPinYinUtil;
 import team.abc.tonguetwister.tools.NetWorkUtil;
 import team.abc.tonguetwister.tools.RecognizeRelatedUtil;
@@ -46,17 +45,10 @@ import java.util.Date;
 import org.json.JSONObject;
 
 import com.baidu.speech.VoiceRecognitionService;
-import com.flyco.animation.BounceEnter.BounceTopEnter;
-import com.flyco.animation.SlideExit.SlideBottomExit;
-import com.flyco.dialog.widget.MaterialDialog;
 
 import android.app.Activity;
 import android.content.ComponentName;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.MediaRecorder;
 
 public class PkActivity extends Activity implements
 		RecognitionListener {
@@ -83,7 +75,7 @@ public class PkActivity extends Activity implements
 	private static final String TAG = "PKActivity";
     private long countDownInterval = 1000;//每隔一秒
     private MyCountDownTimer myCountDownTimer;
-
+    private Boolean isOverTime=false;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -149,7 +141,7 @@ public class PkActivity extends Activity implements
 					}
 					if (!SpeechRecognizer
 							.isRecognitionAvailable(PkActivity.this)) {
-						Log.i(TAG, "识别不可用……重启中");
+						Log.e(TAG, "识别不可用……重启中");
 						speechRecognizer.destroy();
 						initRecognize();
 					}
@@ -169,11 +161,16 @@ public class PkActivity extends Activity implements
 
 					break;
 				case MotionEvent.ACTION_UP:
-					if (!RecordPermissionUtil.isHasPermission(PkActivity.this)||!NetWorkUtil.isNetworkAvailable(MyApplication
-							.getMyAppContext())) {
+					if (!NetWorkUtil.isNetworkAvailable(MyApplication
+							.getMyAppContext())||isOverTime==true) {
+						
+						isOverTime=false;
+						speechRecognizer.destroy();
+						speechTips.setVisibility(View.GONE);
+						dialog_refresh.cancel();			        	
 						break;
 					}
-					 myCountDownTimer.cancel();   
+					myCountDownTimer.cancel();   
 					end_time = dfs.format(new Date());
 					time_difference = TimeDifferenceUtil.timeDifference(
 							begin_time, end_time);
@@ -182,6 +179,7 @@ public class PkActivity extends Activity implements
 					speechTips.setVisibility(View.GONE);
 					dialog_refresh.show();
 					if (between < 1000) {
+						Toast.makeText(PkActivity.this,"需要按住说话" , Toast.LENGTH_LONG).show();
 						dialog_refresh.cancel();    	
 					}
 					break;
@@ -306,8 +304,6 @@ public class PkActivity extends Activity implements
 	    Toast.makeText(PkActivity.this, "挑战失败,生命值-1", Toast.LENGTH_LONG).show();
 		   
         ratingbar.setRating(ratingbar.getRating()-1f);
-        number=number+1;
-		initValue(number);
         }
 		}
         
@@ -351,8 +347,8 @@ public class PkActivity extends Activity implements
 				/ between, similiarRatio);
 		dialog_refresh.cancel();
 		if (ratingNum==1f) {
-			Toast.makeText(PkActivity.this, "挑战成功,生命值+1", Toast.LENGTH_LONG).show();	
-			ratingbar.setRating(ratingbar.getRating()+1f);
+			number=number+1;
+			initValue(number);
 		}else{
 			  if (ratingbar.getRating()==1f) {
         	   ratingbar.setRating(0);
@@ -368,8 +364,7 @@ public class PkActivity extends Activity implements
 				
 			}
 		}
-		number=number+1;
-		initValue(number);
+	
 		
 	}
 
@@ -447,10 +442,8 @@ public class PkActivity extends Activity implements
 	         */
 	        @Override
 	        public void onFinish() { 
+	        	isOverTime=true;
 	        	tv_countdown.setText("00:00");
-	        	
-	        	speechRecognizer.stopListening();
-	        	dialog_refresh.cancel();
 	        	
 	        	if (ratingbar.getRating()==1f) {
 	           	  ratingbar.setRating(0);
@@ -462,40 +455,12 @@ public class PkActivity extends Activity implements
 	      	      overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 				  finish();
 	   			}else {
-	   				Toast.makeText(PkActivity.this, "规定时间未完成挑战,生命值-1", Toast.LENGTH_LONG).show();		
-	   				ratingbar.setRating(ratingbar.getRating()-1f);
-					number=number+1;
-	   				initValue(number);
-//	   				showMaterialDialog(
-//	   						"规定时间未完成挑战,生命值-1",PkActivity.this);
+//	   				Toast.makeText(PkActivity.this, "规定时间未完成挑战,生命值-1", Toast.LENGTH_LONG).show();		
 	   				
+	   				ShowMaterialDialog.showMaterialDialog("规定时间未完成挑战,生命值-1",PkActivity.this);
+	   				ratingbar.setRating(ratingbar.getRating()-1f);
 	   			}
 	        }
 	    }
-	 
-	 public void showMaterialDialog(String msg,final Context mContext) {
-			final MaterialDialog dialog = new MaterialDialog(
-					mContext);
-
-			dialog.btnNum(1).content(msg).btnText("知道了")
-					.showAnim(new BounceTopEnter())
-					.dismissAnim(new SlideBottomExit()).show();
-		
-			dialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-
-				@Override
-				public void onDismiss(DialogInterface dialog) {
-					
-					ratingbar.setRating(ratingbar.getRating()-1f);
-					number=number+1;
-	   				initValue(number);
-	   				dialog.cancel();
-
-				}
-			});
-			 dialog.setCanceledOnTouchOutside(false);
-		}
-
-
 
 }

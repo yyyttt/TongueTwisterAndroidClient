@@ -314,9 +314,12 @@ public class PassThroughItemActivity extends Activity implements
 					speechRecognizer.startListening(intent);
 
 					break;
-				case MotionEvent.ACTION_UP:
-					if (!RecordPermissionUtil.isHasPermission(PassThroughItemActivity.this)||!NetWorkUtil.isNetworkAvailable(MyApplication
+				case MotionEvent.ACTION_UP:			
+					if (!NetWorkUtil.isNetworkAvailable(MyApplication
 							.getMyAppContext())) {
+						speechRecognizer.destroy();
+						speechTips.setVisibility(View.GONE);
+						dialog_refresh.cancel();	
 						break;
 					}
 					end_time = dfs.format(new Date());
@@ -327,6 +330,7 @@ public class PassThroughItemActivity extends Activity implements
 					speechTips.setVisibility(View.GONE);
 					dialog_refresh.show();
 					if (between < 1000) {
+						Toast.makeText(PassThroughItemActivity.this,"需要按住说话" , Toast.LENGTH_LONG).show();
 						dialog_refresh.cancel();    	
 					}
 					break;
