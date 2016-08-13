@@ -282,6 +282,8 @@ public class StudyActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onDestroy() {
 		// TODO Auto-generated method stub
+		mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEAKER,"1");
+		mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED,"5");
 		mSpeechSynthesizer.stop();
 		super.onDestroy();
 	}

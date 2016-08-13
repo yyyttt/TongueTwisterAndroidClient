@@ -44,7 +44,7 @@ public class RankingActivity extends Activity {
 		setContentView(R.layout.activity_ranking);
 
 		passNum = getIntent().getIntExtra("number", -1);
-
+		Log.i(TAG, "passNum="+passNum);
 		initView();
 		initData();
 
