@@ -17,9 +17,11 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class RankingActivity extends Activity {
 	private int passNum;
 	private ImageView ivRankUser;
 	private TextView tvResult;
+	private ProgressBar proBarLoadingList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,7 @@ public class RankingActivity extends Activity {
 			new UserInfoDataAchieveTask().execute();
 		}else{
 			Toast.makeText(this, Constant.EXCEPTION_NETWORK, Toast.LENGTH_SHORT).show();
+			proBarLoadingList.setVisibility(View.GONE);
 		}
 
 	}
@@ -84,6 +88,8 @@ public class RankingActivity extends Activity {
 		ivRankUser = (ImageView) findViewById(R.id.iv_rank_user);
 		listView = (ListView) findViewById(R.id.list_ranking);
 		tvResult = (TextView) findViewById(R.id.tv_result);
+		proBarLoadingList = (ProgressBar)findViewById(R.id.proBar_loading_list);
+		
 		// 获所有将要绑定的用户数据并设置到listItems中
 		listItems = new ArrayList<UserInfo>();
 		adapter = new RankingListAdapt(RankingActivity.this, listItems,
@@ -115,6 +121,7 @@ public class RankingActivity extends Activity {
 			
 			if(result != null){//说明有异常
 				Toast.makeText(RankingActivity.this, result, Toast.LENGTH_SHORT).show();
+				proBarLoadingList.setVisibility(View.GONE);
 			}else{
 				//通知列表数据更新。
 				adapter.notifyDataSetChanged();
@@ -188,6 +195,9 @@ public class RankingActivity extends Activity {
 
 	public void setResult() {
 
+		//有数据时，让其消失
+		proBarLoadingList.setVisibility(View.GONE);
+		
 		//未登录，未挑战
 		if(!hasLogin && (passNum == -1)){
 			tvResult.setText("提示：您尚未登陆！");
