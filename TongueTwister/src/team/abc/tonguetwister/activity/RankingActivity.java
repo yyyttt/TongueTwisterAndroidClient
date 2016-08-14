@@ -137,7 +137,7 @@ public class RankingActivity extends Activity {
 		protected String doInBackground(Void... params) {
 			IUserInfoHessian userInfoHessian = null;
 			HessianProxyFactory factory = new HessianProxyFactory();
-			factory.setOverloadEnabled(true);
+			//factory.setOverloadEnabled(true);
 			factory.setHessian2Reply(false);
 			try {
 				userInfoHessian = (IUserInfoHessian) factory.create(

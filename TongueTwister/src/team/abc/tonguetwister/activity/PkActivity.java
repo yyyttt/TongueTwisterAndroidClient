@@ -179,7 +179,7 @@ public class PkActivity extends Activity implements
 					speechTips.setVisibility(View.GONE);
 					dialog_refresh.show();
 					if (between < 1000) {
-						Toast.makeText(PkActivity.this,"需要按住说话" , Toast.LENGTH_LONG).show();
+						Toast.makeText(PkActivity.this,"需要按住说话" , Toast.LENGTH_SHORT).show();
 						dialog_refresh.cancel();    	
 					}
 					break;
@@ -292,7 +292,7 @@ public class PkActivity extends Activity implements
 	    	speechRecognizer.cancel();
 		}else{
 	    if (ratingbar.getRating()==1f) {
-	    	 Toast.makeText(PkActivity.this, "挑战结束", Toast.LENGTH_LONG).show();
+	    	 Toast.makeText(PkActivity.this, "挑战结束", Toast.LENGTH_SHORT).show();
 	  	   
         	ratingbar.setRating(0);
         	Intent rankIntent = new Intent(this, RankingActivity.class);
@@ -301,7 +301,7 @@ public class PkActivity extends Activity implements
       	    overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
 			finish();
 		}else{
-	    Toast.makeText(PkActivity.this, "挑战失败,生命值-1", Toast.LENGTH_LONG).show();
+	    Toast.makeText(PkActivity.this, "挑战失败,生命值-1", Toast.LENGTH_SHORT).show();
 		   
         ratingbar.setRating(ratingbar.getRating()-1f);
         }
@@ -347,21 +347,21 @@ public class PkActivity extends Activity implements
 				/ between, similiarRatio);
 		dialog_refresh.cancel();
 		if (ratingNum==1f) {
-			 Toast.makeText(PkActivity.this, "挑战成功，进入下一关", Toast.LENGTH_LONG).show();		
+			 Toast.makeText(PkActivity.this, "挑战成功，进入下一关", Toast.LENGTH_SHORT).show();		
         	 
 			number=number+1;
 			initValue(number);
 		}else{
 			  if (ratingbar.getRating()==1f) {
         	   ratingbar.setRating(0);
-        	   Toast.makeText(PkActivity.this, "挑战结束", Toast.LENGTH_LONG).show();		
+        	   Toast.makeText(PkActivity.this, "挑战结束", Toast.LENGTH_SHORT).show();		
         	   Intent rankIntent = new Intent(PkActivity.this, RankingActivity.class);
         	   rankIntent.putExtra("number", number);
         	   startActivity(rankIntent);
 	      	   overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         	   finish();
 			}else {
-				Toast.makeText(PkActivity.this, "挑战失败,生命值-1", Toast.LENGTH_LONG).show();		
+				Toast.makeText(PkActivity.this, "挑战失败,生命值-1", Toast.LENGTH_SHORT).show();		
 				ratingbar.setRating(ratingbar.getRating()-1f);
 				
 			}
@@ -449,7 +449,7 @@ public class PkActivity extends Activity implements
 	        	
 	        	if (ratingbar.getRating()==1f) {
 	           	  ratingbar.setRating(0);
-	           	  Toast.makeText(PkActivity.this, "挑战结束", Toast.LENGTH_LONG).show();		
+	           	  Toast.makeText(PkActivity.this, "挑战结束", Toast.LENGTH_SHORT).show();		
 	        	  
 	           	  Intent rankIntent = new Intent(PkActivity.this, RankingActivity.class);
 	           	  rankIntent.putExtra("number", number);
