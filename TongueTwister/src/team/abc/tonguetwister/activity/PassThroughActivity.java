@@ -3,8 +3,10 @@ package team.abc.tonguetwister.activity;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -170,4 +172,17 @@ public class PassThroughActivity extends Activity {
 		tv_title.startAnimation(animation);
 
 	}
+	
+	/*
+	 * 手机键盘的操作
+	 */
+	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+            startActivity(new Intent(PassThroughActivity.this,MainActivity.class));
+			overridePendingTransition(R.anim.push_right_in,
+					R.anim.push_right_out);
+			finish();
+		}
+		return false;
+	};
 }

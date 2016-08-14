@@ -15,7 +15,7 @@
         android:background="@color/skyblue"
         android:orientation="vertical" >
 
-        <team.abc.tonguetwister.widget.MyTextView
+        <TextView
             android:id="@+id/tv_number"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
             android:layout_marginTop="10dip"
             android:text="挑战1"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:textColor="@color/lightpurple"
+            android:textColor="@color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
 

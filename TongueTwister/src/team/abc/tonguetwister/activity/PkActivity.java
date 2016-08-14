@@ -14,6 +14,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.RatingBar;
 import android.widget.RelativeLayout;
@@ -119,7 +120,7 @@ public class PkActivity extends Activity implements
 
 		tv_word = (TextView) findViewById(R.id.tv_word);
 		tv_word.setText(wordContent);
-
+		tv_word.setAnimation(AnimationUtils.loadAnimation(this, R.anim.push_left_in));  
 		tv_number = (TextView) findViewById(R.id.tv_number);
 		tv_number.setText("挑战" + (number + 1));
 		
@@ -409,7 +410,7 @@ public class PkActivity extends Activity implements
 	 */
 	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
-
+            startActivity(new Intent(PkActivity.this,PkStartActivity.class));
 			overridePendingTransition(R.anim.push_right_in,
 					R.anim.push_right_out);
 			finish();

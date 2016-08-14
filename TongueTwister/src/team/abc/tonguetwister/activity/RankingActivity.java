@@ -14,9 +14,11 @@ import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.sharedpreference.UserInfoSharedPreference;
 import team.abc.tonguetwister.tools.NetWorkUtil;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -231,5 +233,16 @@ public class RankingActivity extends Activity {
 		return;
 		
 	}
-
+	/*
+	 * 手机键盘的操作
+	 */
+	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+            startActivity(new Intent(RankingActivity.this,PkStartActivity.class));
+			overridePendingTransition(R.anim.push_right_in,
+					R.anim.push_right_out);
+			finish();
+		}
+		return false;
+	};
 }

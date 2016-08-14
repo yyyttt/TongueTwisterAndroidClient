@@ -18,3 +18,50 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
+
+########保护注解############
+-keepattributes *Annotation*
+
+
+########第三方jar包############
+-ignorewarnings  
+-dontusemixedcaseclassnames
+-dontskipnonpubliclibraryclasses
+-dontskipnonpubliclibraryclassmembers
+-dontpreverify
+-verbose
+
+-libraryjars libs/armeabi/libbd_etts.so
+-libraryjars libs/armeabi/libbdEASRAndroid.so
+-libraryjars libs/armeabi/libBDSpeechDecoder_V1.so
+-libraryjars libs/armeabi/libbdtts.so
+-libraryjars libs/armeabi/libBDVoiceRecognitionClient_MFE_V1.so
+-libraryjars libs/armeabi/libgnustl_shared.so
+
+-libraryjars libs/audioplayerdemo.jar
+-libraryjars libs/android-support-v4.jar
+-libraryjars libs/com.baidu.tts_2.2.6.20160505_a2af8d6_beta.jar
+-libraryjars libs/galaxy-v2.0.jar
+-libraryjars libs/nineoldandroids-2.4.0.jar
+-libraryjars libs/pinyin4j-2.5.0.jar
+-libraryjars libs/UserInfoHessian.jar
+-libraryjars libs/VoiceRecognition-2.0.1.jar
+
+-keep class com.audioplayer.demo.**{*;}
+-keep class android.support.v4.**{*;}
+-keep class com.baidu.android.common.**{*;}
+-keep class com.nineoldandroids.**{*;}
+-keep class com.hp.hpl.sparta.**{*;}
+-keep class demo.**{*;}
+-keep class net.sourceforge.pinyin4j.**{*;}
+-keep class team.abc.bean.**{*;}
+-keep class team.abc.ihessian.**{*;}
+-keep class com.baidu.**{*;}
+ 
+-keep public class * extends android.app.Activity
+-keep public class team.abc.tonguetwister.application.MyApplication
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver    
+-keep public class * extends android.view.View
+
+

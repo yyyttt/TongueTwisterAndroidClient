@@ -4,6 +4,7 @@ import team.abc.tonguetwister.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -58,9 +59,13 @@ public class PkStartActivity extends Activity implements OnClickListener {
 		switch (v.getId()) {
 		case R.id.rl_start_pk:
 			startActivity(new Intent(PkStartActivity.this, PkActivity.class));
+			overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+			finish();
 			break;
 		case R.id.rl_ranking:
 			startActivity(new Intent(PkStartActivity.this, RankingActivity.class));
+			overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
+			finish();
 			break;
 		default:
 			break;
@@ -68,5 +73,16 @@ public class PkStartActivity extends Activity implements OnClickListener {
 		}
 	}
 	
-	
+	/*
+	 * 手机键盘的操作
+	 */
+	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+            startActivity(new Intent(PkStartActivity.this,MainActivity.class));
+			overridePendingTransition(R.anim.push_right_in,
+					R.anim.push_right_out);
+			finish();
+		}
+		return false;
+	};
 }
