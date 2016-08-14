@@ -22,6 +22,7 @@
             android:layout_gravity="center"
             android:text="title"
             android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textStyle="bold"
             android:textColor="@color/white" />
         
         <TextView
@@ -34,8 +35,8 @@
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:text="南南有个篮篮，篮篮装着盘盘，盘盘放着碗碗，碗碗盛着饭饭。南南翻了篮篮，篮篮扣了盘盘，盘盘打了碗碗，碗碗撒了饭饭."
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="@color/trans_white"/>
+            android:textColor="@color/trans_white"
+            android:textSize="20sp"/>
 
         <ProgressBar
             android:id="@+id/proBar"

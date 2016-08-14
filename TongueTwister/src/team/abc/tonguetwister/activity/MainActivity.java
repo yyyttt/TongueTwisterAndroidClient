@@ -6,6 +6,7 @@ import com.flyco.dialog.listener.OnBtnClickL;
 import com.flyco.dialog.widget.MaterialDialog;
 
 import team.abc.tonguetwister.R;
+import team.abc.tonguetwister.application.MyApplication;
 import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.fragment.SlidingContentFragment;
 import team.abc.tonguetwister.fragment.SlidingMenuFragment;
@@ -34,6 +35,8 @@ public class MainActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 
+		MyApplication.addActivity(this);
+		
 		getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 		setContentView(R.layout.activity_main);
 		slidingPaneLayout = (SlidingPaneLayout) findViewById(R.id.slidingpanellayout);
@@ -97,7 +100,7 @@ public class MainActivity extends Activity {
 		}, new OnBtnClickL() {
 			@Override
 			public void onBtnClick() {
-				MainActivity.this.finish();
+				MyApplication.exit();
 			}
 		});
 

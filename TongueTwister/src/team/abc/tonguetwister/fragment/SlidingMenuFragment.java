@@ -249,7 +249,7 @@ public class SlidingMenuFragment extends Fragment implements OnClickListener {
 			break;
 		case R.id.lv_login:
 			startActivity(new Intent(getActivity(), LoginChooseActivity.class));
-			getActivity().finish();
+			//getActivity().finish();
 			break;
 		case R.id.tv_share_online:
 			ShareUtil.shareTo(getActivity(), "挑战绕口令？尽在吧嗒绕口令-让你的舌头快快舞动起来~"+URLConstant.SHARE_URL);

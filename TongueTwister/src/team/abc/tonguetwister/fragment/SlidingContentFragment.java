@@ -86,19 +86,19 @@ public class SlidingContentFragment extends Fragment implements OnClickListener 
 			Intent intentStudy = new Intent();
 			intentStudy.setClass(aty, StudyModeChooseActivity.class);
 			startActivity(intentStudy);
-			aty.finish();
+			//aty.finish();
 			break;
 		case R.id.rl_pass_through:
 			Intent intentPassThrough = new Intent();
 			intentPassThrough.setClass(aty, PassThroughActivity.class);
 			startActivity(intentPassThrough);
-			aty.finish();
+//			aty.finish();
 			break;
 		case R.id.rl_pk:
 			Intent intentPk = new Intent();
 			intentPk.setClass(aty, PkStartActivity.class);
 			startActivity(intentPk);
-			aty.finish();
+//			aty.finish();
 			break;
 
 		case R.id.iv_control:

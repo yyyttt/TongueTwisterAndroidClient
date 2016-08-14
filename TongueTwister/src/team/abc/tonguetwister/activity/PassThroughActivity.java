@@ -176,7 +176,7 @@ public class PassThroughActivity extends Activity {
 	/*
 	 * 手机键盘的操作
 	 */
-	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+	/*public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivity(new Intent(PassThroughActivity.this,MainActivity.class));
 			overridePendingTransition(R.anim.push_right_in,
@@ -184,5 +184,5 @@ public class PassThroughActivity extends Activity {
 			finish();
 		}
 		return false;
-	};
+	};*/
 }

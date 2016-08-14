@@ -95,7 +95,7 @@ public class StudyModeChooseActivity extends Activity implements
 	/*
 	 * 手机键盘的操作
 	 */
-	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+	/*public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivity(new Intent(StudyModeChooseActivity.this,MainActivity.class));
 			overridePendingTransition(R.anim.push_right_in,
@@ -103,6 +103,6 @@ public class StudyModeChooseActivity extends Activity implements
 			finish();
 		}
 		return false;
-	};
+	};*/
 
 }

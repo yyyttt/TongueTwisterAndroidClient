@@ -408,7 +408,7 @@ public class PkActivity extends Activity implements
 	/*
 	 * 手机键盘的操作
 	 */
-	public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
+	/*public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
             startActivity(new Intent(PkActivity.this,PkStartActivity.class));
 			overridePendingTransition(R.anim.push_right_in,
@@ -416,7 +416,7 @@ public class PkActivity extends Activity implements
 			finish();
 		}
 		return false;
-	};
+	};*/
 
 	@Override
 	protected void onDestroy() {
