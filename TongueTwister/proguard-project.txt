@@ -21,6 +21,7 @@
 
 ########保护注解############
 -keepattributes *Annotation*
+-keepattributes *JavascriptInterface* 
 
 
 ########第三方jar包############
@@ -57,11 +58,14 @@
 -keep class team.abc.bean.**{*;}
 -keep class team.abc.ihessian.**{*;}
 -keep class com.baidu.**{*;}
+-keep class team.abc.tonguetwister.javascriptobject.**{*;}
+-keep class team.abc.tonguetwister.widget.**{*;}
  
 -keep public class * extends android.app.Activity
 -keep public class team.abc.tonguetwister.application.MyApplication
 -keep public class * extends android.app.Service
 -keep public class * extends android.content.BroadcastReceiver    
 -keep public class * extends android.view.View
+
 
 
