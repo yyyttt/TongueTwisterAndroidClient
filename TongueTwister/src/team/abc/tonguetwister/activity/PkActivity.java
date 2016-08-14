@@ -49,6 +49,8 @@ import com.baidu.speech.VoiceRecognitionService;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 
 public class PkActivity extends Activity implements
 		RecognitionListener {
@@ -82,6 +84,7 @@ public class PkActivity extends Activity implements
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.activity_pk);
 		
+	
 		ratingbar = (RatingBar) findViewById(R.id.pk_ratingbar);
 		ratingbar.setRating(3);
         
@@ -98,8 +101,10 @@ public class PkActivity extends Activity implements
 	}
 
 	private void initValue(int numberPass) {
-		tongueTwister =TTOperation.getAppointedOneTT(numberPass);
+//		tongueTwister =TTOperation.getAppointedOneTT(numberPass);
+		tongueTwister = TTOperation.getRandom();
 		wordContent = tongueTwister.getContent();
+		
 		wordNumber = WordCountUtil.wordCount(wordContent);
 		wordTime=(wordNumber/4)+1;
 		millisInFuture=wordTime*1000;
