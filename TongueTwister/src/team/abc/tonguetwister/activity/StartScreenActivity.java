@@ -34,8 +34,10 @@ public class StartScreenActivity extends Activity {
 	private TextView logoexpressText;
 	private long exitTime = 0;
 
-	private final String NO_NETWORK = "未连接网络";
-	private final String DISABLE_NETWORK = "网络不可用";
+	//private final String NO_NETWORK = "未连接网络";
+	private final String NO_NETWORK = "需要连接网络才可以使用哦~";
+	//private final String DISABLE_NETWORK = "网络不可用";
+	private final String DISABLE_NETWORK = "需要连接网络才可以使用哦~";
 	private final String PREPARE_SUCCESS = "success";
 	public static final String ISFIRSTRECORD="IsFirstRecord";
 	

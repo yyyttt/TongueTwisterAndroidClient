@@ -81,9 +81,9 @@ public class Constant {
 
 	public static final String TAG = "UpdateChecker";
     //网络状况
-	public static final String NO_NETWORK = "未连接网络";
-	public static final String DISABLE_NETWORK = "网络不可用";
-	public static final String EXCEPTION_NETWORK = "网络异常";
+	public static final String NO_NETWORK = "网络已断开，需要连网才可以使用哦！";
+	public static final String DISABLE_NETWORK = "网络已断开，需要连网才可以使用哦！";
+	public static final String EXCEPTION_NETWORK = "网速不给力哦！";
 	public static final String PREPARE_SUCCESS = "success";
 	
 	//按钮声明
