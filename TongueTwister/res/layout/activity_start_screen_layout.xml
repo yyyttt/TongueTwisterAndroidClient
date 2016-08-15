@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:text="吧嗒绕口令 — 让舌头跳动起来 ~"
+            android:text="吧嗒绕口令 — 让舌头舞动起来 ~"
             android:textColor="@color/deepslategray"
             android:textSize="22dip" />
     </RelativeLayout>

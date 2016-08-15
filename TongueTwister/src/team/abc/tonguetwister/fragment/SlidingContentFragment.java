@@ -11,6 +11,8 @@ import team.abc.tonguetwister.activity.MainActivity;
 import team.abc.tonguetwister.activity.PassThroughActivity;
 import team.abc.tonguetwister.activity.PkStartActivity;
 import team.abc.tonguetwister.activity.StudyModeChooseActivity;
+import team.abc.tonguetwister.animation.Jumper;
+import team.abc.tonguetwister.animation.Slider;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
@@ -65,6 +67,10 @@ public class SlidingContentFragment extends Fragment implements OnClickListener 
 		rlPk.setOnClickListener(this);
 		ivControl.setOnClickListener(this);
 
+		// 启动动画
+		Slider slider = new Slider(500, 25);
+		slider.attachToView(ivControl);
+		
 		return currentView;
 	}
 
