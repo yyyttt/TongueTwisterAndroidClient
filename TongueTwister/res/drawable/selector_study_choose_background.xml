@@ -4,11 +4,14 @@
     <item android:state_pressed="false"><shape>
             <gradient android:angle="45" android:endColor="@color/lightslategray" android:startColor="@color/slategray" />
 
+            <corners android:radius="8dp" />
             <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp" />
         </shape></item>
     <item android:state_pressed="true"><shape>
             <gradient android:angle="45" android:endColor="@color/slategray" android:startColor="@color/deepslategray" />
 
+            <corners android:radius="8dp" />
+            
             <padding android:bottom="10dp" android:left="10dp" android:right="10dp" android:top="10dp" />
         </shape></item>
 
