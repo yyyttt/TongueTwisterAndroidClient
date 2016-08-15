@@ -21,6 +21,8 @@ import team.abc.tonguetwister.R;
 import team.abc.tonguetwister.adapter.GridviewAdapter;
 import team.abc.tonguetwister.constant.Constant;
 import team.abc.tonguetwister.constant.Level;
+import team.abc.tonguetwister.sharedpreference.FirstStartUpJudgement;
+import team.abc.tonguetwister.tools.RecordPermissionUtil;
 import team.abc.tonguetwister.widget.ScrollLayout;
 import team.abc.tonguetwister.widget.TranslateAnimationWidget;
 
@@ -50,6 +52,14 @@ public class PassThroughActivity extends Activity {
 		}
 
 		initView();
+
+		// 判断是否首次登陆要录音权限
+		if (FirstStartUpJudgement.isFirstNeedRecord()) {
+
+			RecordPermissionUtil.isHasPermission(this);
+
+		}
+
 	}
 
 	@Override
@@ -74,12 +84,13 @@ public class PassThroughActivity extends Activity {
 		tv_title.setText(Level.ARRAY[0]);
 		tv_title.setTypeface(Typeface.DEFAULT_BOLD);
 		Constant.init(PassThroughActivity.this);
-		param = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.FILL_PARENT,
+		param = new LinearLayout.LayoutParams(
+				android.view.ViewGroup.LayoutParams.FILL_PARENT,
 				android.view.ViewGroup.LayoutParams.FILL_PARENT);
 		param.rightMargin = 60;
 		param.leftMargin = 60;
-		param.topMargin=60;
-		param.bottomMargin=60;
+		param.topMargin = 60;
+		param.bottomMargin = 60;
 
 		initData();
 
@@ -107,13 +118,14 @@ public class PassThroughActivity extends Activity {
 	}
 
 	public void initData() {
-		Constant.countPages = (int) Math.ceil(lstDate.size() / (float) PAGE_SIZE);
+		Constant.countPages = (int) Math.ceil(lstDate.size()
+				/ (float) PAGE_SIZE);
 
 		lists = new ArrayList<ArrayList<String>>();
 		for (int i = 0; i < Constant.countPages; i++) {
 			lists.add(new ArrayList<String>());
-			for (int j = PAGE_SIZE * i; j < (PAGE_SIZE * (i + 1) > lstDate.size() ? lstDate.size()
-					: PAGE_SIZE * (i + 1)); j++)
+			for (int j = PAGE_SIZE * i; j < (PAGE_SIZE * (i + 1) > lstDate
+					.size() ? lstDate.size() : PAGE_SIZE * (i + 1)); j++)
 				lists.get(i).add(lstDate.get(j));
 		}
 	}
@@ -122,33 +134,34 @@ public class PassThroughActivity extends Activity {
 
 		linear = new LinearLayout(PassThroughActivity.this);
 		gridView = new GridView(getApplicationContext());
-		gridviewAdapter = new GridviewAdapter(PassThroughActivity.this, lists.get(i));
+		gridviewAdapter = new GridviewAdapter(PassThroughActivity.this,
+				lists.get(i));
 		gridView.setAdapter(gridviewAdapter);
 		gridView.setNumColumns(4);
 		gridView.setColumnWidth(405);
-		
+
 		gridView.setHorizontalSpacing(8);
 		gridView.setVerticalSpacing(10);
 
 		gridviews.add(gridView);
 		linear.addView(gridviews.get(i), param);
 		return linear;
-		
-		
-//        DisplayMetrics dm = new DisplayMetrics();
-//        getWindowManager().getDefaultDisplay().getMetrics(dm);
-//        float density = dm.density;
-//        int gridviewWidth = (int) (size * (100 + 4) * density);
-//        int itemWidth = (int) (100 * density);
-//
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-//                gridviewWidth, LinearLayout.LayoutParams.FILL_PARENT);
-//        gridView.setLayoutParams(params); // 设置GirdView布局参数,横向布局的关键
-        
+
+		// DisplayMetrics dm = new DisplayMetrics();
+		// getWindowManager().getDefaultDisplay().getMetrics(dm);
+		// float density = dm.density;
+		// int gridviewWidth = (int) (size * (100 + 4) * density);
+		// int itemWidth = (int) (100 * density);
+		//
+		// LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+		// gridviewWidth, LinearLayout.LayoutParams.FILL_PARENT);
+		// gridView.setLayoutParams(params); // 设置GirdView布局参数,横向布局的关键
+
 	}
 
 	public void setCurPage(final int page) {
-		Animation animation = AnimationUtils.loadAnimation(PassThroughActivity.this, R.anim.scale_in);
+		Animation animation = AnimationUtils.loadAnimation(
+				PassThroughActivity.this, R.anim.scale_in);
 		animation.setAnimationListener(new Animation.AnimationListener() {
 			@Override
 			public void onAnimationStart(Animation animation) {
@@ -163,26 +176,26 @@ public class PassThroughActivity extends Activity {
 				tv_page.setText((page + 1) + "");
 				tv_title.setText(Level.ARRAY[page]);
 
-				tv_page.startAnimation(AnimationUtils.loadAnimation(PassThroughActivity.this, R.anim.scale_out));
-				//题目转一圈    20160713 zsc
-				//tv_title.startAnimation(AnimationUtils.loadAnimation(PassThroughActivity.this, R.anim.scale_in));
+				tv_page.startAnimation(AnimationUtils.loadAnimation(
+						PassThroughActivity.this, R.anim.scale_out));
+				// 题目转一圈 20160713 zsc
+				// tv_title.startAnimation(AnimationUtils.loadAnimation(PassThroughActivity.this,
+				// R.anim.scale_in));
 			}
 		});
 		tv_page.startAnimation(animation);
 		tv_title.startAnimation(animation);
 
 	}
-	
+
 	/*
 	 * 手机键盘的操作
 	 */
-	/*public boolean onKeyDown(int keyCode, android.view.KeyEvent event) {
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-            startActivity(new Intent(PassThroughActivity.this,MainActivity.class));
-			overridePendingTransition(R.anim.push_right_in,
-					R.anim.push_right_out);
-			finish();
-		}
-		return false;
-	};*/
+	/*
+	 * public boolean onKeyDown(int keyCode, android.view.KeyEvent event) { if
+	 * (keyCode == KeyEvent.KEYCODE_BACK) { startActivity(new
+	 * Intent(PassThroughActivity.this,MainActivity.class));
+	 * overridePendingTransition(R.anim.push_right_in, R.anim.push_right_out);
+	 * finish(); } return false; };
+	 */
 }

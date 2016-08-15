@@ -12,6 +12,7 @@ import team.abc.tonguetwister.application.MyApplication;
 import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.dao.TongueTwisterDetailsDb;
 import team.abc.tonguetwister.init.TTSInit;
+import team.abc.tonguetwister.sharedpreference.FirstStartUpJudgement;
 import team.abc.tonguetwister.tools.NetWorkUtil;
 import team.abc.tonguetwister.tools.RecordPermissionUtil;
 import android.app.Activity;
@@ -38,9 +39,7 @@ public class StartScreenActivity extends Activity {
 	private final String NO_NETWORK = "需要连接网络才可以使用哦~";
 	//private final String DISABLE_NETWORK = "网络不可用";
 	private final String DISABLE_NETWORK = "需要连接网络才可以使用哦~";
-	private final String PREPARE_SUCCESS = "success";
-	public static final String ISFIRSTRECORD="IsFirstRecord";
-	
+	private final String PREPARE_SUCCESS = "success";	
 	private final String TAG = "StartScreenActivity";
 	
 
@@ -100,9 +99,8 @@ public class StartScreenActivity extends Activity {
 				tongueTwisterDetailsDb.passThroughAddMore();
 			}
 			
-			
-			//判断是否首次登陆
-			SharedPreferences s = StartScreenActivity.this.getSharedPreferences(ISFIRSTRECORD,Context.MODE_PRIVATE);
+
+			/*SharedPreferences s = StartScreenActivity.this.getSharedPreferences(ISFIRSTRECORD,Context.MODE_PRIVATE);
 			int count=s.getInt("coun", 0);
 			if(count==0){//第一次开启
 				RecordPermissionUtil.isHasPermission(StartScreenActivity.this);
@@ -110,7 +108,7 @@ public class StartScreenActivity extends Activity {
 				SharedPreferences.Editor editor = StartScreenActivity.this.getSharedPreferences(ISFIRSTRECORD, Context.MODE_PRIVATE).edit();
 				editor.putInt("coun", 1);
 				editor.commit();
-			}
+			}*/
 			
 
 			return PREPARE_SUCCESS;

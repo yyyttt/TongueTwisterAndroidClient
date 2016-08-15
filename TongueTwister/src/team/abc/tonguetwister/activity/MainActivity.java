@@ -10,6 +10,8 @@ import team.abc.tonguetwister.application.MyApplication;
 import team.abc.tonguetwister.constant.URLConstant;
 import team.abc.tonguetwister.fragment.SlidingContentFragment;
 import team.abc.tonguetwister.fragment.SlidingMenuFragment;
+import team.abc.tonguetwister.sharedpreference.FirstStartUpJudgement;
+import team.abc.tonguetwister.thread.UpdateChecker;
 import team.abc.tonguetwister.tools.RecordPermissionUtil;
 import android.app.Activity;
 import android.content.Context;
@@ -80,6 +82,13 @@ public class MainActivity extends Activity {
 
 			}
 		});
+		
+		
+		//判断是否首次登陆需更新
+		if(FirstStartUpJudgement.isFirstStartupForUpdate()){
+			UpdateChecker.checkForDialog(this);
+
+		}
 		
 	}
 
