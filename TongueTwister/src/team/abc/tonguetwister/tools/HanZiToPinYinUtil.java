@@ -1,5 +1,8 @@
 package team.abc.tonguetwister.tools;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import android.util.Log;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
@@ -9,6 +12,7 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 
 public class HanZiToPinYinUtil {
 	private final static String TAG = "HanyuToPinyin";
+	private static final String regex= "[\u4E00-\u9FA5]+";
 
 	private static HanyuPinyinOutputFormat mDefaultFormat = new HanyuPinyinOutputFormat();
 
@@ -26,12 +30,19 @@ public class HanZiToPinYinUtil {
 			Log.e(TAG, "string value = null, return!");
 			return "";
 		}
-		if (chines.contains(",")) {
+		//yytt
+		StringBuffer chinesBuffer = new StringBuffer();
+		Matcher matcherString = Pattern.compile(regex).matcher(chines);
+		while(matcherString.find()){
+			chinesBuffer.append(matcherString.group());
+		}
+		chines = chinesBuffer.toString();
+		/*if (chines.contains(",")) {
 			chines = chines.replace(",", "");
 		}
 		if (chines.contains(".")) {
 			chines = chines.replace(".", "");
-		}
+		}*/
 		System.out.println(chines);
 		String pinyinName = "";
 
