@@ -26,13 +26,13 @@ public class TTOperation {
 	}
 
 	// 合代码添加
-	/*
+	/* 
 	 * public TTOperation(Context context) { tTList =
 	 * TongueTwisterList.getTTList(); if (tTList.size() == 0) {
 	 * FileUtil.readFile(PATH, tTList,context); } }
 	 */
 
-	// 随机返回一个绕口令
+	// 随机返回一个绕口令    
 	public static TongueTwister getRandom() {
 		int i = new Random().nextInt(tTList.size());
 		return tTList.get(i);
