@@ -11,8 +11,12 @@ import net.sourceforge.pinyin4j.format.HanyuPinyinToneType;
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 public class HanZiToPinYinUtil {
-	private final static String TAG = "HanyuToPinyin";
-	private static final String regex = "[\u4E00-\u9FA5]+";
+	
+	private static final String TAG = "HanyuToPinyin";
+	/**
+	 * 一个或多个汉字
+	 */
+	private static final String CHINESE_WORD_REGEX = "[\u4E00-\u9FA5]+";
 
 	private static HanyuPinyinOutputFormat mDefaultFormat = new HanyuPinyinOutputFormat();
 
@@ -30,8 +34,8 @@ public class HanZiToPinYinUtil {
 			Log.e(TAG, "string value = null, return!");
 			return "";
 		}
-		 /*//yytt
-		chines = removePunctuation(chines);*/
+		// 去除字符串中的标点符号 yytt
+		chines = removePunctuation(chines);
 
 		System.out.println(chines);
 		String pinyinName = "";
@@ -69,7 +73,7 @@ public class HanZiToPinYinUtil {
 			return "";
 		}
 
-		// yytt
+		// 去除字符串中的标点符号 yytt
 		chines = removePunctuation(chines);
 
 		String pinyinName = "";
@@ -99,9 +103,16 @@ public class HanZiToPinYinUtil {
 		return pinyinName;
 	}
 
+	/**
+	 * @author YYTT
+	 * @param 
+	 * 		s 带有标点的字符串。
+	 * @return 
+	 * 		只含有汉字的字符串。
+	 */
 	private static String removePunctuation(String s) {
 		StringBuffer stringBuffer = new StringBuffer();
-		Matcher matcherString = Pattern.compile(regex).matcher(s);
+		Matcher matcherString = Pattern.compile(CHINESE_WORD_REGEX).matcher(s);
 		while (matcherString.find()) {
 			stringBuffer.append(matcherString.group());
 		}
